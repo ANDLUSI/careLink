@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace等于mapper接口类的全限定名,这样实现对应 -->
+<mapper namespace="com.csi.mapper.RoomMapper">
+
+    <!-- 插入一条记录 -->
+    <insert id="save" parameterType="com.csi.domain.Room">
+        INSERT INTO room (
+        type_id,into_number,max_number
+        ) VALUES (
+        #{typeId},
+        #{intoNumber},
+        #{maxNumber}
+
+        )
+    </insert>
+
+    <!-- 删除一条记录 -->
+    <delete id="remove" parameterType="Integer">
+        DELETE FROM room WHERE id = #{id}
+    </delete>
+
+    <!-- 更新一条记录 -->
+    <update id="update" parameterType="com.csi.domain.RoomDTO">
+<!--        //不能改最大入住人数-->
+        UPDATE room
+        SET
+        type_id = #{typeId},
+        into_number = #{intoNumber}
+        WHERE id = #{id};
+    </update>
+
+    <!-- 查询单条记录 -->
+    <select id="findById" parameterType="Integer" resultType="com.csi.domain.Room">
+        SELECT
+        *
+        FROM room
+        WHERE id = #{id}
+    </select>
+
+    <!-- 查询全部 -->
+    <resultMap id="listmap" type="com.csi.domain.Room">
+        <id column="id" property="id"></id>
+        <result column="type_id" property="typeId"></result>
+        <result column="into_number" property="intoNumber"></result>
+        <result column="max_number" property="maxNumber"></result>
+        <association property="resident" javaType="com.csi.domain.Resident">
+            <id property="id" column="id"></id>
+            <result property="name" column="name"></result>
+            <result property="roomNo" column="room_no"></result>
+        </association>
+        <association property="charge" javaType="com.csi.domain.Charge">
+            <id property="id" column="id"></id>
+            <result property="item" column="item"></result>
+        </association>
+    </resultMap>
+
+
+    <select id="list" parameterType="map" resultMap="listmap">
+        <!-- 房型管理  除了房间表以外，还要显示入住人姓名-->
+        SELECT
+        r.id,
+        r.type_id,
+        r.into_number,
+        r.max_number,
+        re.name,
+        c.item
+        FROM room r
+        LEFT  JOIN
+        resident re
+        ON r.id = re.room_no
+        INNER JOIN charge_standard c
+        on c.id = r.type_id
+
+        <where>
+            1=1
+            <if test="key != null and key != ''">
+                AND ( r.id LIKE CONCAT('%', #{key}, '%')
+                OR  r.into_number LIKE CONCAT('%', #{key}, '%'))
+            </if>
+        </where>
+    </select>
+<!--    &lt;!&ndash; 模糊查询 &ndash;&gt;-->
+<!--    <resultMap id="FindMap" type="com.csi.domain.Room">-->
+<!--        <id column="id" property="id"></id>-->
+<!--        <result column="type_id" property="typeId"></result>-->
+<!--        <result column="status" property="status"></result>-->
+<!--    </resultMap>-->
+<!--    <select id="findByLike" resultMap="FindMap">-->
+<!--        SELECT * from room-->
+
+<!--        <where>-->
+<!--            <if test="id != null">-->
+<!--                and id like '%${id}%'-->
+<!--            </if>-->
+<!--            <if test="type != null">-->
+<!--                and type=#{type}-->
+<!--            </if>-->
+<!--            <if test="status != null">-->
+<!--                and status=#{status}-->
+<!--            </if>-->
+<!--        </where>-->
+
+<!--    </select>-->
+
+<!--  查询全部空余房间-->
+    <select id="spareRoom" resultType="com.csi.domain.Room">
+        SELECT id ,type_id,max_number,into_number
+        from room
+        WHERE (max_number - into_number)>0
+    </select>
+
+</mapper>

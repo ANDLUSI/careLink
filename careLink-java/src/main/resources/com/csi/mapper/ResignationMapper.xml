@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace等于mapper接口类的全限定名,这样实现对应 -->
+<mapper namespace="com.csi.mapper.ResignationMapper">
+
+    <!-- 插入一条记录 -->
+    <insert id="save" parameterType="com.csi.domain.Resignation">
+        INSERT INTO check_out_application (
+        resident_id,apply_date,reason,status
+        ) VALUES (
+        #{residentId},
+        #{applyDate},
+        #{reason},
+        #{status}
+        )
+    </insert>
+
+    <!-- 删除一条记录 -->
+    <delete id="remove" parameterType="Integer">
+        DELETE FROM check_out_application WHERE id = #{id}
+    </delete>
+
+    <!-- 更新一条记录 -->
+    <update id="update" parameterType="com.csi.domain.ResignationDTO">
+        <!--修改只修改退宿申请的状态值（同意/拒绝）        -->
+        UPDATE check_out_application
+        SET
+<!--        resident_id = #{residentId},-->
+<!--        apply_date = #{applyDate},-->
+<!--        reason = #{reason},-->
+        status = #{status}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 查询单条记录 -->
+    <select id="findById" parameterType="Integer" resultType="com.csi.domain.Resignation">
+        SELECT
+        *
+        FROM check_out_application
+        WHERE id = #{id}
+    </select>
+
+    <!-- 查询全部 -->
+
+    <resultMap id="listmap" type="com.csi.domain.Resignation">
+        <id column="c_id" property="id"></id>
+        <result column="resident_id" property="residentId"></result>
+        <result column="apply_date" property="applyDate"></result>
+        <result column="reason" property="reason"></result>
+        <result column="status" property="status"></result>
+
+        <association property="resident" javaType="com.csi.domain.Resident">
+            <id property="id" column="id"></id>
+            <result property="name" column="resident_name"></result>
+            <result property="roomId" column="room_id"></result>
+
+
+        </association>
+        <association property="room" javaType="com.csi.domain.Room">
+            <id property="id" column="id"></id>
+
+        </association>
+    </resultMap>
+
+
+    <select id="list" parameterType="map" resultMap="listmap">
+        <!-- 退宿申请的查看详情还需要看到入住人姓名和房号  查询 退宿申请表 、入住表、房间表安照申请日期降序排列-->
+        SELECT
+        c.id c_id,
+        c.resident_id,
+        c.apply_date,
+        c.reason,
+        c.status,
+        re.name 'resident_name',
+        r.id
+        FROM check_out_application c
+        INNER JOIN
+        resident re
+        ON
+        c.resident_id = re.id
+        INNER JOIN
+        room r
+        ON
+        re.room_no =r.id
+        <where>
+            <if test="residentId != null">
+                and  c.resident_id =#{residentId}
+            </if>
+            <if test="status != null">
+                and c.status=#{status}
+            </if>
+        </where>
+        ORDER BY c.apply_date DESC
+
+    </select>
+
+
+</mapper>

@@ -1,0 +1,281 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.all{
+    background-image: url(../images/big-background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.head{
+    margin:0 100px;
+}
+
+.head img{
+    width: 180px;
+    vertical-align: middle;
+}
+
+.head span{
+    padding-left: 30px;
+    font-size: 30px;
+    font-family: 'Times New Roman';
+}
+
+.content{
+    height: 70vh;
+}
+
+.form_div{
+    margin: 0 auto;
+    margin-top: 180px;
+    background-color: #ffffffe3;
+    height: 450px;
+    width: 420px;
+    border-radius: 5px;
+}
+
+.form_head{
+    height: 80px;
+}
+
+.form_head span{
+    margin-left: 60px;
+    padding-bottom: 10px;
+    font-size: 20px;
+    line-height: 80px;
+}
+
+.login_span{
+    border-bottom: 3px solid #69a373;
+    color: #000;
+    cursor: pointer;
+}
+
+.code_login_span{
+    color: #939794;
+    cursor: pointer;
+}
+
+.form_content{
+    margin-top: 20px;
+}
+
+.phone_input{
+    border: 0px solid #000;
+    background-color: rgb(248, 248, 248);
+    height: 60px;
+    width: 334px;
+    margin-left: 35px;
+    margin-top: 10px;
+    font-size: 16px;
+    padding-left: 20px;
+    border-radius: 10px;
+}
+
+.pwd_input{
+    border: 0px solid #000;
+    background-color: rgb(248, 248, 248);
+    height: 60px;
+    width: 334px;
+    margin-left: 35px;
+    margin-top: 25px;
+    font-size: 16px;
+    padding-left: 20px;
+    border-radius: 10px;
+}
+
+.code_input{
+    border: 0px solid #000;
+    background-color: rgb(248, 248, 248);
+    height: 60px;
+    width: 180px;
+    margin-left: 35px;
+    margin-top: 30px;
+    font-size: 16px;
+    padding-left: 20px;
+    border-radius: 10px;
+}
+
+.get_code{
+    margin-top: 30px;
+    margin-right: 30px;
+    height: 60px;
+    width: 154px;
+    font-size: 16px;
+    line-height: 60px;
+    background-color: rgb(248, 248, 248);
+    color: #636b65;
+    float: right;
+    /* position: absolute;
+    top: 457px;
+    left: 846px; */
+    border-left: 1px solid #d5dbd6;
+    text-align: center;
+    cursor: pointer;
+    display: none;
+    border-radius: 10px;
+}
+
+.get_code_add{
+    margin-top: 30px;
+    margin-right: 30px;
+    height: 60px;
+    width: 154px;
+    font-size: 16px;
+    line-height: 60px;
+    background-color: rgb(248, 248, 248);
+    color: #636b65;
+    float: right;
+    /* position: absolute;
+    top: 478px;
+    left: 846px; */
+    border-left: 1px solid #d5dbd6;
+    text-align: center;
+    cursor: pointer;
+    display: none;
+    border-radius: 10px;
+}
+
+.get_code:hover{
+    background-color: #c0c7c2;
+    color: #000;
+}
+
+.get_code_add:hover{
+    background-color: #c0c7c2;
+    color: #000;
+}
+
+#code_p{
+    display: none;
+}
+
+.form_content_a{
+    margin-left: 35px;
+    margin-top: 20px;
+}
+
+a{
+    text-decoration: none;
+    color: #69a373;
+}
+
+.re{
+    margin-left: 205px;
+}
+
+.login_button{
+    /* border: 1px solid #000; */
+    border-radius: 10px;
+    background-color: #e7ece8;
+    margin-top: 30px;
+    margin-left: 40px;
+    height: 60px;
+    width: 340px;
+    text-align: center;
+}
+
+.login_button:hover{
+    background-color: #69a373;
+}
+
+.login_button:hover a{
+    color: #fff;
+}
+
+
+.login_button a{
+    line-height: 60px;
+    text-decoration: none;
+    font-size: 16px;
+    color: #636b65;
+}
+
+#error_span{
+    margin-left: 39px;
+    color: red;
+    display: none;
+    position: absolute;
+}
+
+#contract_input{
+    margin-top: 25px;
+    margin-left: 35px;
+}
+
+#zhe{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6); 
+    z-index: 1000; 
+}
+
+.zhe_content{
+    background-color: #fff;
+    margin: 350px auto;
+    height: 168px;
+    width: 460px;
+    border-radius: 5px;
+}
+.zhe_content p{
+    padding-left: 30px;
+    padding-top: 20px;
+    font-size: 18px;
+}
+
+.zhe_content>span{
+    display: inline-block;
+    margin-top: 15px;
+    margin-left: 34px;
+}
+
+.zhe_check_div{
+    margin-top: 10px;
+}
+
+.no{
+    display: inline-block;
+    margin-top: 20px;
+    margin-left: 200px;
+    width: 68px;
+    height: 30px;
+    background-color: #c9c9d1;
+    text-align: center;
+    border-radius: 2px;
+}
+
+.no span{
+    line-height: 30px;
+    font-size: 15px;
+}
+
+.yes{
+    display: inline-block;
+    margin-top: 0px;
+    margin-left: 25px;
+    width: 100px;
+    height: 30px;
+    background-color: #69a373;
+    text-align: center;
+    border-radius: 2px;
+}
+
+.yes span{
+    line-height: 30px;
+    font-size: 15px;
+    color: #fff;
+}
+
+#zhe{
+    display: none;
+}
+
+.zhe_check_div span{
+    cursor: default;
+}

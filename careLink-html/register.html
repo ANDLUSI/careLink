@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="assets/css/register.css"/>
+    <script src="assets/js/jquery.min.js"></script>
+</head>
+<body>
+    <div class="register_all">
+        <div class="register_head">
+            <img src="assets/images/logo.png" />
+            <span>CareLink康养平台</span>
+        </div>
+        <div class="register_content">
+            <div class="register_form_div">
+                <div class="register_form_head">
+                    <span class="register_span">注册</span>
+                </div>
+                <div class="register_form_content">
+                    <form>
+                        <p id="register_phone_p">
+                            <input type="text" name="register_phone" placeholder="手机号" class="register_phone_input" onblur="phoneCheck(this)"/>
+                        </p>
+                        <span id="register_error_span">手机号输入有误*</span>
+                        <p id="register_pwd_p">
+                            <input type="password" name="register_password" placeholder="密码" class="register_pwd_input"/>
+                        </p>
+                        <p id="pwd_p_check">
+                            <input type="password" name="register_password_check" placeholder="再次输入密码" class="register_pwd_input_check"/>
+                        </p>
+                        <p id="register_code_p">
+                            <input type="text" name="register_code" placeholder="验证码" class="register_code_input"/>
+                            <div class="register_get_code" id="dian">点击获取</div>
+                        </p>
+                        <div class="register_form_content_a">
+                            <a href="login.html" class="lo">返回登录</a>
+                        </div>
+                        <p>
+                            <input type="checkbox" name="register_contract" id="register_contract_input"/>
+                            <span>已阅读并同意<a href="javascript:void(0)">用户协议</a>和<a href="javascript:void(0)">隐私政策</a></span>
+                        </p>
+                        <div class="register_button">
+                            <a href="javascript:void(0)">注册</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="register_zhe">
+        <div class="register_zhe_content">
+            <p>友情提示</p>
+            <span>已阅读并同意<a href="javascript:void(0)">用户协议</a>和<a href="javascript:void(0)">隐私政策</a></span>
+            <div class="register_zhe_check_div">
+                <div class="register_no"><span>取消</span></div>
+                <div class="register_yes"><span>同意并继续</span></div>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        // 当鼠标移开手机号输入框时校验手机号
+        function phoneCheck(){
+            var errorSpan = document.getElementById("register_error_span")
+            var phones = document.getElementsByClassName("register_phone_input")
+            var phoneValue = phones[0].value
+            var regex = /^1[3-9]\d{9}$/;
+            var dian = document.getElementById("dian")
+            if(!regex.test(phoneValue)){
+                errorSpan.style.display="inline"
+                dian.classList.add('register_get_code_add')
+                dian.classList.remove('register_get_code')
+            }else{
+                errorSpan.style.display="none"
+                dian.classList.remove('register_get_code_add')
+                dian.classList.add('register_get_code')
+            }
+        }
+
+        $(function(){
+            // 点击注册时检查是否同意协议，如果未同意则显示遮罩层内容
+            $('div.register_button').click(function(){
+                var isChecked = $('#register_contract_input').is(':checked')
+                if(!isChecked){
+                    $('#register_zhe').css('display','block');
+                    return;
+                }
+                //点击注册时校验手机号
+                var phoneP = $('#register_phone_p input').val();
+                if(phoneP.trim()===''){
+                    $('#register_error_span').css('display','inline')
+                    $('#dian').removeClass('register_get_code')
+                    $('#dian').addClass('register_get_code_add')
+                    return;
+                }
+
+                var rePwdP = $('#register_pwd_p input').val()
+                var checkP = $('#pwd_p_check input').val()
+                if(rePwdP!==checkP){
+                    alert('两次密码不一致，请重新输入')
+                    rePwdP = $('#register_pwd_p input').val('')
+                    checkP = $('#pwd_p_check input').val('')
+                    return;
+                }
+
+                if(rePwdP===''){
+                    alert('请输入密码！')
+                    return;
+                }
+
+                var codeP = $('#register_code_p input').val()
+                if(codeP===''){
+                    alert('请输入验证码！')
+                }else{
+                    $.ajax({
+                        url:'http://localhost/UserController/register',
+                        method:'POST',
+                        data: {contact:phoneP,password:rePwdP,code:codeP},
+                        success:function(result){
+                            if(result.code===101){
+                                alert(result.message)
+                                window.location.href='login.html'
+                            }else if(result.code===102){
+                                alert(result.message)
+                            }else{
+                                alert(result.message)
+                            }
+                        },
+                        error:function(){
+                            alert('注册异常！')
+                        }
+                    })
+                }
+            })
+
+            //点击获取开始
+            var reCountdown=60;
+            $('#dian').click(function(){
+                var reMouse = $('#dian').css('cursor')
+                var rePhoneVal = $('.register_phone_input').val()
+                if(reMouse==='pointer'){
+                    var reRegex = /^1[3-9]\d{9}$/;
+                    var reErrorSpan = $('#register_error_span')
+                    var reDian = $('#dian')
+                    if(!reRegex.test(rePhoneVal)){
+                        reErrorSpan.css('display','inline')
+                        reDian.addClass('register_get_code_add')
+                        reDian.removeClass('register_get_code')
+                        return;
+                    }else{
+                        reErrorSpan.css('display','none')
+                        reDian.addClass('register_get_code')
+                        reDian.removeClass('register_get_code_add')
+                    }
+                }else{
+                    return;
+                }
+
+                $.ajax({
+                    url:'http://localhost/UserController/sendCode',
+                    method:'POST',
+                    data: {contact:rePhoneVal}
+                })
+
+                var reTimer = setInterval(function(){
+                    if(reCountdown===0){
+                        clearInterval(reTimer);
+                        $('#dian').text('点击获取')
+                        $('#dian').css('font-size','16px')
+                        $('#dian').css('cursor','pointer')
+                        reCountdown = 60;
+                    }else{
+                        $('#dian').text(reCountdown + '秒后重新获取')
+                        $('#dian').css('font-size','16px')
+                        $('#dian').css('cursor','not-allowed')
+                        reCountdown--;
+                    }
+                },1000);
+                
+            })
+            //点击获取结束
+            
+            $('.register_no').click(function(){
+                $('#register_zhe').css('display','none');
+            })
+
+            $('.register_yes').click(function(){
+                $('#register_zhe').css('display','none');
+                $('#register_contract_input').prop('checked',true)
+            })
+
+        })
+    </script>
+</body>
+</html>

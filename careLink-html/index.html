@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareLink</title>
+
+    <!-- favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="assets/images/favicon/site.webmanifest">
+
+    <!-- plugins styles -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Baloo+2:400,500,600,700,800%7CLato:100,300,400,700,900%7COpen+Sans:300,400,600,700,800%7CRoboto:300,400,500,700,900%7CRubik:300,400,500,700,900&display=swap">
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/css/hover-min.css">
+    <link rel="stylesheet" href="assets/css/swiper.min.css">
+    <link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="assets/css/oberlin-icons.css">
+
+    <!-- template styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+
+    <script src="assets/iconfont/iconfont.js"></script>
+    <style>
+        .icon {
+          width: 1em;
+          height: 1em;
+          vertical-align: -0.15em;
+          fill: currentColor;
+          overflow: hidden;
+        }
+        </style>
+</head>
+
+<body>
+
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <div class="page-wrapper">
+        <nav class="main-nav-one stricky">
+            <div class="container">
+                <div class="inner-container">
+                    <div class="logo-box">
+                        <a href="index.html">
+                            <img src="assets/images/logo.png" alt="" width="219">
+                        </a>
+                        <a href="#" class="side-menu__toggler"><i class="fa fa-bars"></i></a>
+                    </div>
+                    <div class="main-nav__main-navigation">
+                        <ul class="main-nav__navigation-box">
+                            <li class="dropdown">
+                                <a href="index.html">首页</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="about-1.html">设施介绍</a>
+                                
+                            </li>
+                            <li class="dropdown">
+                                <a href="services1.html">服务介绍</a>
+                                
+                            </li>
+                            <li class="dropdown">
+                                <a href="services1.html">志愿活动</a>
+                                <ul>
+                                    <li><a href="story.html">志愿活动</a></li>
+                                    <li><a href="career.html">志愿者申请入口</a></li>
+                                    
+                                </ul>
+                            </li>
+                            
+                            <li><a href="contact.html">在线咨询</a></li>
+                        </ul>
+                    </div>
+                    <div class="main-nav__right">
+                        <a href="login.html" class="thm-btn main-nav-one__btn login_and_center" ><i class="far fa-clock"></i>
+                            登录/注册</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <section class="slider-one__wrapper">
+            <div class="slider-one__nav">
+                <a href="#" class="slider-one__nav-left">
+                    <i class="far fa-angle-left"></i>
+                </a>
+                <a href="#" class="slider-one__nav-right">
+                    <i class="far fa-angle-right"></i>
+                </a>
+            </div>
+            <div class="slider-one__carousel owl-carousel owl-theme thm__owl-carousel" data-options='{
+                "items": 1, "loop": true, "autoplay": true, "autoplayHoverPause": true, "autoplayTimeout": 5000,
+                "margin": 0, "dots": false, "nav": false, "animateOut": &quot;fadeOut&quot;, "animateIn": &quot;fadeIn&quot;, "active": true, "smartSpeed": 1000
+            }' data-carousel-next-btn=".slider-one__nav-right" data-carousel-prev-btn=".slider-one__nav-left">
+                <div class="item" style="background-image: url(assets/images/main-slider/b1.jpg);">
+                    <div class="slider-one__item">
+                        <div class="container">
+                            <div class="row justify-content-end">
+                                <div class="col-lg-12 d-flex justify-content-end">
+                                    <div class="slider-one__content">
+                                        <div class="slider-one__content-inner">
+                                            <h3>家人放心 老人开心</h3>
+                                            <p>致力于为每一位老人提供专业化、个性化的服务、</p>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url(assets/images/main-slider/bg2.jpg);">
+                    <div class="slider-one__item">
+                        <div class="container">
+                            <div class="row justify-content-end">
+                                <div class="col-lg-12 d-flex justify-content-end">
+                                    <div class="slider-one__content">
+                                        <div class="slider-one__content-inner">
+                                             <h3>爱心团队 无私奉献</h3>
+                                            <p>尊老，敬老，养老，爱老，助老。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url(assets/images/main-slider/bg3.jpg);">
+                    <div class="slider-one__item">
+                        <div class="container">
+                            <div class="row justify-content-end">
+                                <div class="col-lg-12 d-flex justify-content-end">
+                                    <div class="slider-one__content">
+                                        <div class="slider-one__content-inner">
+                                             <h3>安享晚年 余生欢庆</h3>
+                                            <p>用我们的爱心托起老年人幸福的晚年</p>
+                                            <!-- <a href="donation-single.html" class="thm-btn slider-one__btn">Donate
+                                                Now</a> -->
+
+                                            <!-- /.thm-btn slider-one__btn -->
+                                        </div><!-- /.slider-one__content-inner -->
+                                    </div><!-- /.slider-one__content -->
+                                </div><!-- /.col-lg-6 -->
+                            </div><!-- /.row justify-content-end -->
+                        </div><!-- /.container -->
+                    </div><!-- /.slider-one__item -->
+                </div><!-- /.item -->
+            </div><!-- /.slider-one__carousel owl-carousel owl-theme thm__owl-carousel -->
+        </section><!-- /.slider-one__wrapper -->
+
+        <section class="service-one service-one__home-one">
+            <div class="container">
+                <div class="block-title text-center">
+                    <p>01. 服务</p>
+                    <h3>每个人都值得我们 <br>最好的服务</h3>
+                </div><!-- /.block-title -->
+                <div class="service-one__carousel-two thm__owl-carousel owl-carousel owl-theme" data-options='{
+                    "items": 2, "nav": false, "dots": true, "margin": 40, "loop": true, "smartSpeed": 700, "autoplay": true, "autoplayTimeout": 5000, "autoplayHoverPause": true, "responsive": {
+                        "0": {"items": 1, "margin": 0, "dots": false, "nav": true },
+                        "767": {"items": 1, "margin": 0, "dots": false, "nav": true },
+                        "991": {"items": 2, "margin": 30},
+                        "1199": {"items": 3}
+                    }
+                }'>
+
+                <div class="item">
+                    <div class="service-one__single">
+                        <div class="service-one__content">
+                            <div class="service-one__icon">
+                                <i class="oberlin-icon-stethoscope"></i>
+                            </div><!-- /.service-one__icon -->
+                            <h3><a href="javascript:void(0);">医疗服务</a></h3>
+                            <p>配备专业医护人员，为每位长者建立健康档案，随时关注老人健康状况，一旦发现病情可以及时采取治疗措施，减轻家属负担。 </p>
+                            <a href="javascript:void(0);" class="service-one__link"><i
+                                    class="far fa-long-arrow-alt-right"></i></a><!-- /.service-one__link -->
+                        </div><!-- /.service-one__content -->
+                    </div><!-- /.service-one__single -->
+                </div><!-- /.col-lg-4 -->
+                <div class="item">
+                    <div class="service-one__single">
+                        <div class="service-one__content">
+                            <div class="service-one__icon">
+                                <i class="oberlin-icon-disability"></i>
+                            </div><!-- /.service-one__icon -->
+                            <h3><a href="javascript:void(0);">个人护理</a></h3>
+                            <p>房间配备高标准适老化设施设备，配备专业护工，对长者给予饮食照料、清洁照料、睡眠照料，24小时随叫随到。 </p>
+                            <a href="javascript:void(0);" class="service-one__link"><i
+                                    class="far fa-long-arrow-alt-right"></i></a><!-- /.service-one__link -->
+                        </div><!-- /.service-one__content -->
+                    </div><!-- /.service-one__single -->
+                </div><!-- /.col-lg-4 -->
+                <div class="item">
+                    <div class="service-one__single">
+                        <div class="service-one__content">
+                            <div class="service-one__icon">
+                                <i class="oberlin-icon-blind"></i>
+                            </div><!-- /.service-one__icon -->
+                            <h3><a href="javascript:void(0);">休闲娱乐</a></h3>
+                            <p>可在护理人陪同外出散步,亲近自然享受生活。免费开放卡拉OK室、棋牌麻将室、手工室、书画室等娱乐休闲场所。 </p>
+                            <a href="javascript:void(0);" class="service-one__link"><i
+                                    class="far fa-long-arrow-alt-right"></i></a><!-- /.service-one__link -->
+                        </div><!-- /.service-one__content -->
+                    </div><!-- /.service-one__single -->
+                </div><!-- /.col-lg-4 -->
+
+
+                <div class="item">
+                    <div class="service-one__single">
+                        <div class="service-one__content">
+                            <div class="service-one__icon">
+                                <!-- <i class="oberlin-icon-stethoscope"></i> -->
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-shanshiyingyang"></use>
+                                  </svg>
+                            </div><!-- /.service-one__icon -->
+                            <h3><a href="javascript:void(0);">膳食营养</a></h3>
+                            <p> 每周不重样，流质、半流质，流食分开管理，对不同信仰、少数民族及特殊人群提供个性化餐饮（糖尿病、低盐、低脂、低糖等）。 </p>
+                            <a href="javascript:void(0);" class="service-one__link"><i
+                                    class="far fa-long-arrow-alt-right"></i></a><!-- /.service-one__link -->
+                        </div><!-- /.service-one__content -->
+                    </div><!-- /.service-one__single -->
+                </div><!-- /.col-lg-4 -->
+                <div class="item">
+                    <div class="service-one__single">
+                        <div class="service-one__content">
+                            <div class="service-one__icon">
+                                <!-- <i class="oberlin-icon-disability"></i> -->
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-zhiyuanfuwu-xuanzhong"></use>
+                                  </svg>
+                            </div><!-- /.service-one__icon -->
+                            <h3><a href="javascript:void(0);">志愿服务</a></h3>
+                            <p>专业的社工志愿者通过敬老助老爱心活动和照护，帮助长者抒发情绪、应对压力、减少焦虑发生，强化自尊和社会互动等作用。 </p>
+                            <a href="javascript:void(0);" class="service-one__link"><i
+                                    class="far fa-long-arrow-alt-right"></i></a><!-- /.service-one__link -->
+                        </div><!-- /.service-one__content -->
+                    </div><!-- /.service-one__single -->
+                </div><!-- /.col-lg-4 -->
+                <div class="item">
+                    <div class="service-one__single">
+                        <div class="service-one__content">
+                            <div class="service-one__icon">
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-zhiyuanfuwu"></use>
+                                  </svg>
+                            </div><!-- /.service-one__icon -->
+                            <h3><a href="javascript:void(0);">心理健康</a></h3>
+                            <p>用亲情化服务减少长者孤独、焦虑、抑郁、恐惧的情绪，同时制定相应的心理辅导类活动，让长者拥有积极快乐的心理状态。 </p>
+                            <a href="javascript:void(0);" class="service-one__link"><i
+                                    class="far fa-long-arrow-alt-right"></i></a><!-- /.service-one__link -->
+                        </div><!-- /.service-one__content -->
+                    </div><!-- /.service-one__single -->
+                </div><!-- /.col-lg-4 -->
+                <div class="item">
+                    <div class="service-one__single">
+                        <div class="service-one__content">
+                            <div class="service-one__icon">
+                                <i class="oberlin-icon-stethoscope"></i>
+                            </div><!-- /.service-one__icon -->
+                            <h3><a href="javascript:void(0);">医疗服务</a></h3>
+                            <p>配备专业医护人员，为每位长者建立健康档案，随时关注老人健康状况，一旦发现病情可以及时采取治疗措施，减轻家属负担。 </p>
+                            <a href="javascript:void(0);" class="service-one__link"><i
+                                    class="far fa-long-arrow-alt-right"></i></a><!-- /.service-one__link -->
+                        </div><!-- /.service-one__content -->
+                    </div><!-- /.service-one__single -->
+                </div><!-- /.col-lg-4 -->
+                <div class="item">
+                    <div class="service-one__single">
+                        <div class="service-one__content">
+                            <div class="service-one__icon">
+                                <i class="oberlin-icon-disability"></i>
+                            </div><!-- /.service-one__icon -->
+                            <h3><a href="javascript:void(0);">个人护理</a></h3>
+                            <p>房间配备高标准适老化设施设备，配备专业护工，对长者给予饮食照料、清洁照料、睡眠照料，24小时随叫随到。 </p>
+                            <a href="javascript:void(0);" class="service-one__link"><i
+                                    class="far fa-long-arrow-alt-right"></i></a><!-- /.service-one__link -->
+                        </div><!-- /.service-one__content -->
+                    </div><!-- /.service-one__single -->
+                </div><!-- /.col-lg-4 -->
+                <div class="item">
+                    <div class="service-one__single">
+                        <div class="service-one__content">
+                            <div class="service-one__icon">
+                                <i class="oberlin-icon-blind"></i>
+                            </div><!-- /.service-one__icon -->
+                            <h3><a href="javascript:void(0);">休闲娱乐</a></h3>
+                            <p>可在护理人陪同外出散步,亲近自然享受生活。免费开放卡拉OK室、棋牌麻将室、手工室、书画室等娱乐休闲场所。 </p>
+                            <a href="javascript:void(0);" class="service-one__link"><i
+                                    class="far fa-long-arrow-alt-right"></i></a><!-- /.service-one__link -->
+                        </div><!-- /.service-one__content -->
+                    </div><!-- /.service-one__single -->
+                </div><!-- /.col-lg-4 -->
+        </section><!-- /.service-one -->
+
+        <section class="about-three">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6"> 
+                        <div class="about-three__content">
+                            <div class="block-title">
+                                <p class="has-line">02. 关于我们</p><!-- /.has-line -->
+                                <h3>让天下老人 <br> 福寿绵长</h3>
+                            </div><!-- /.block-title -->
+                            <p>
+                                致力于为活力老人、术后康复老人、失能/半失能老人、认知障碍老人和政府优抚对象提供长期颐养、健康照护、医疗护理、文化娱乐、心灵陪伴、临终关怀等多种服务，为长者打造更安心的居住环境、更舒适的社交场景、更丰富的精神生活、更浓厚的文化氛围。真正实现老有所依、老有所养、老有所安、老有所乐，让长者在这里乐享福寿生活。
+                            </p>
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <ul class="blog-details__list list-unstyled">
+                                        <li>
+                                            <i class="fa fa-check-circle"></i>
+                                           温馨环境
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-check-circle"></i>
+                                            专业护工
+                                        </li>
+                                    </ul><!-- /.blog-details__list list-unstyled -->
+                                </div><!-- /.col-md-6 -->
+                                <div class="col-xl-6">
+                                    <ul class="blog-details__list list-unstyled">
+                                        <li>
+                                            <i class="fa fa-check-circle"></i>
+                                            营养美味的膳食
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-check-circle"></i>
+                                            专业医疗团队
+                                        </li>
+                                    </ul><!-- /.blog-details__list list-unstyled -->
+                                </div><!-- /.col-md-6 -->
+                              
+                            </div><!-- /.row -->
+                        </div><!-- /.about-three__content -->
+                    </div><!-- /.col-lg-6 -->
+                    <div class="col-lg-6 wow fadeInRight" data-wow-duration="1500ms">
+                        <div class="about-three__image ">
+                            <img src="assets/images/shapes/about-dot-3-1.png" class="about-dot-3-1" alt="">
+                            <div class="about-three__image-text"><span
+                                    class="curved-circle">25&nbsp;Years&nbsp;Of&nbsp;Experiences&nbsp;&nbsp;25&nbsp;Years&nbsp;of&nbsp;Experinces&nbsp;&nbsp;Experince</span>
+                            </div><!-- /.about-three__image-text -->
+                            <img src="assets/images/resources/about1.jpg" style="height: 700px;width: 600px;" alt="">
+                        </div><!-- /.about-three__image -->
+                    </div><!-- /.col-lg-6 -->
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </section><!-- /.about-three -->
+
+
+        <section class="cta-one" style="background-image: url(assets/images/background/bg-bg.jpg);">
+            <div class="container text-center">
+                <h3>今天就预约吧!</h3>
+                <br>
+                <a href="contact.html" class="thm-btn cta-one__btn">->></a><!-- /.thm-btn cta-one__btn -->
+            </div><!-- /.container -->
+        </section><!-- /.cta-one -->
+
+        <section class="funfact-one">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-duration="1500ms">
+                        <div class="funfact-one__single">
+                            <div class="funfact-one__counter">
+                                <h3 id="employeeNum"></h3>
+                            </div><!-- /.funfact-one__counter -->
+                            <p>员工规模</p>
+                        </div><!-- /.funfact-one__single -->
+                    </div><!-- /.col-lg-3 -->
+                    <div class="col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-duration="1500ms">
+                        <div class="funfact-one__single">
+                            <div class="funfact-one__counter">
+                                <h3 id="residentsNum">
+                                    <span class="counter"></span>
+                                </h3>
+                            </div><!-- /.funfact-one__counter -->
+                            <p>在住老人</p>
+                        </div><!-- /.funfact-one__single -->
+                    </div><!-- /.col-lg-3 -->
+                    <div class="col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-duration="1500ms">
+                        <div class="funfact-one__single">
+                            <div class="funfact-one__counter">
+                                <h3 id="userNum"><span class="counter">20</span><!-- /.counter -->k+</h3>
+                            </div><!-- /.funfact-one__counter -->
+                            <p>注册用户</p>
+                        </div><!-- /.funfact-one__single -->
+                    </div><!-- /.col-lg-3 -->
+                   
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </section><!-- /.funfact-one -->
+   
+        
+
+
+        <section class="event-two">
+            <div class="container">
+                <div class="block-title text-center">
+                    <p>03. 入院指南</p>
+                    <h3>欢迎加入我们大家庭</h3>
+                </div><!-- /.block-title -->
+                <div class="row no-gutters">
+                    <div class="col-xl-6">
+                        <div class="event-two__single">
+                            
+                            <div class="event-two__content d-flex">
+                                <div class="my-auto">
+                                    <div class="event-two__date"><b>01</b><span>入院<br>条件</span></div>
+                                    <!-- /.event-two__date -->
+                                    <!-- <h3><a href="event-details.html">Jogging for the Better Tomorrow</a></h3> -->
+                                    <p>年满60周岁以上，无传染性疾病，无精神疾病，病情相对稳定的长者；
+                                        有本市常住人员（子女或亲属）为紧急联系人，作为养老服务协议的共同签约方，承担相应责任及义务.</p>
+                                </div><!-- /.my-auto -->
+                            </div><!-- /.event-two__content -->
+                        </div><!-- /.event-two__single -->
+                    </div><!-- /.col-lg-6 -->
+                    <div class="col-xl-6">
+                        <div class="event-two__single">
+                            
+                            <div class="event-two__content d-flex">
+                                <div class="my-auto">
+                                    <div class="event-two__date"><b>02</b><span>参观<br>预约</span></div>
+                                    <!-- /.event-two__date -->
+                                    <!-- <h3><a href="event-details.html">Walk for Mikado Hospice</a></h3> -->
+                                    <p>线上/电话/现场咨询.<br>预约参观</p>
+                                </div><!-- /.my-auto -->
+                            </div><!-- /.event-two__content -->
+                        </div><!-- /.event-two__single -->
+                    </div><!-- /.col-lg-6 -->
+                    <div class="col-xl-6">
+                        <div class="event-two__single">
+                          
+                            <div class="event-two__content d-flex">
+                                <div class="my-auto">
+                                    <div class="event-two__date"><b>03</b> <span>查体<br>评估</span></div>
+                                    <!-- /.event-two__date -->
+                                    <!-- <h3><a href="event-details.html">Mountain Camp Cabin in the Woods</a></h3> -->
+                                    <p>
+                                        依照体检项目单要求至二级以上医院体检中心或机构内安排查体；
+                                        提交长辈当月内体况证明材料，近期医院治疗出院小结。
+                                    </p>
+                                </div><!-- /.my-auto -->
+                            </div><!-- /.event-two__content -->
+                        </div><!-- /.event-two__single -->
+                    </div><!-- /.col-lg-6 -->
+                    <div class="col-xl-6">
+                        <div class="event-two__single">
+                            
+                            <div class="event-two__content d-flex">
+                                <div class="my-auto">
+                                    <div class="event-two__date"><b>04</b> <span>安排<br>入住</span></div>
+                                    <!-- /.event-two__date -->
+                                    <!-- <h3><a href="event-details.html">Chess Tournament Final Results</a></h3> -->
+                                    <p>
+                                        前台与长辈或家属沟通入住办理时间；
+                                        入住当日引领至总服务台办理入住手续；
+                                        评估建档，双方签署养老入住协议；
+                                        财务室缴纳费用；
+                                        服务员接引长辈入住房间。
+                                    </p>
+                                </div><!-- /.my-auto -->
+                            </div><!-- /.event-two__content -->
+                        </div><!-- /.event-two__single -->
+                    </div><!-- /.col-lg-6 -->
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </section><!-- /.event-two -->
+
+        
+    
+       <footer class="site-footer">
+
+            <div class="site-footer__main">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-4 col-lg-6 col-md-5">
+                            <div class="footer-widget footer-widget__about">
+                                <h3 class="footer-widget__title">服务目的</h3><!-- /.footer-widget__title -->
+                                <p>一圈圈年轮，一重重岁月，以一种更积极的态度认识衰老，关注衰老，也是为了每个人生命中，终将来临的那场落日</p>
+                                
+                            </div><!-- /.footer-widget -->
+                        </div><!-- /.col-xl-4 col-lg-6 col-md-5 -->
+                        <div class="col-xl-2 col-lg-6 col-md-5">
+                            <div class="footer-widget footer-widget__links">
+                                <h3 class="footer-widget__title">服务</h3><!-- /.footer-widget__title -->
+                                <ul class="list-unstyled footer-widget__links-list">
+                                    <li><a href="about-1.html">关于我们</a></li>
+                                    <li><a href="living-option.html">活动</a></li>
+                                    <li><a href="event.html">事件</a></li>
+                                    <li><a href="team.html">志愿</a></li>
+                                    <li><a href="donation-causes.html">捐款</a></li>
+                                    <li><a href="career.html">工作</a></li>
+                                </ul><!-- /.list-unstyled footer-widget__links-list -->
+                            </div><!-- /.footer-widget footer-widget__links -->
+                        </div><!-- /.col-xl-2 col-lg-6 col-md-5 -->
+                        <div class="col-xl-3 col-lg-6 col-md-5">
+                            <div class="footer-widget footer-widget__post">
+                                <h3 class="footer-widget__title">资讯活动</h3><!-- /.footer-widget__title -->
+                                <div class="footer-widget__post-wrap">
+                                    <div class="footer-widget__post-single">
+                                        <div class="footer-widget__post-image">
+                                            <img src="assets/images/services1/oldmen.jpg" alt="">
+                                        </div><!-- /.footer-widget__post-image -->
+                                        <div class="footer-widget__post-content">
+                                            <h3><a href="blog-details.html"> <br> </a></h3>
+                                            <span>Mar 25, 2021</span>
+                                        </div><!-- /.footer-widget__post-content -->
+                                    </div><!-- /.footer-widget__post-single -->
+                                    <div class="footer-widget__post-single">
+                                        <div class="footer-widget__post-image">
+                                            <img src="assets/images/services1/oldwoman.jpg" alt="">
+                                        </div><!-- /.footer-widget__post-image -->
+                                        <div class="footer-widget__post-content">
+                                            <h3><a href="blog-details.html"> <br> </a></h3>
+                                            <span>Mar 25, 2021</span>
+                                        </div><!-- /.footer-widget__post-content -->
+                                    </div><!-- /.footer-widget__post-single -->
+                                </div><!-- /.footer-widget__post-wrap -->
+                            </div><!-- /.footer-widget footer-widget__post -->
+                        </div><!-- /.col-xl-3 col-lg-6 col-md-5 -->
+
+                        <div class="col-xl-3 col-lg-6 col-md-5">
+                            <div class="footer-widget footer-widget__contact">
+                                <h3 class="footer-widget__title">联系我们</h3><!-- /.footer-widget__title -->
+                                <p>愿你无论在任何年纪，都能被时光温柔以待<br>智慧康养&nbsp;&nbsp;欢迎每一位想要了解或者加入我们家庭的成员。</p>
+                                <p><a href="tel:+2(305)-587-3407">+2(305) 587-3407</a></p>
+                                <p><a href="mailto:info@oberlin.com">info@oberlin.com</a></p>
+                            </div><!-- /.footer-widget footer-widget__contact -->
+                        </div><!-- /.col-xl-3 col-lg-6 col-md-5 -->
+                    </div><!-- /.row -->
+                </div><!-- /.container -->
+            </div>
+            
+            <!-- <div class="site-footer__main">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-4 col-lg-6 col-md-5">
+                            <div class="footer-widget footer-widget__about">
+                                <h3 class="footer-widget__title">About</h3>
+                                <p>Lorem ipsum dolor amet consetetur adi pisicing elit sed eiusm tempor in cididunt ut
+                                    labore dolore magna aliqua enim ad minim venitam </p>
+                                <p>Quis nostrud exercita laboris nisi ut aliquip commodo.</p>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-6 col-md-5">
+                            <div class="footer-widget footer-widget__links">
+                                <h3 class="footer-widget__title">Services</h3>
+                                <ul class="list-unstyled footer-widget__links-list">
+                                    <li><a href="about-1.html">About Us</a></li>
+                                    <li><a href="living-option.html">Campaigns</a></li>
+                                    <li><a href="event.html">Events</a></li>
+                                    <li><a href="team.html">Volunteering</a></li>
+                                    <li><a href="donation-causes.html">Donations</a></li>
+                                    <li><a href="career.html">Jobs</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-6 col-md-5">
+                            <div class="footer-widget footer-widget__post">
+                                <h3 class="footer-widget__title">Top News</h3>
+                                <div class="footer-widget__post-wrap">
+                                    <div class="footer-widget__post-single">
+                                        <div class="footer-widget__post-image">
+                                            <img src="assets/images/resources/footer-post-1-1.png" alt="">
+                                        </div>
+                                        <div class="footer-widget__post-content">
+                                            <h3><a href="blog-details.html">The Added Value <br> Social Worker</a></h3>
+                                            <span>Mar 25, 2021</span>
+                                        </div>
+                                    </div>
+                                    <div class="footer-widget__post-single">
+                                        <div class="footer-widget__post-image">
+                                            <img src="assets/images/resources/footer-post-1-2.png" alt="">
+                                        </div>
+                                        <div class="footer-widget__post-content">
+                                            <h3><a href="blog-details.html">Ways to Increase <br> Trust</a></h3>
+                                            <span>Mar 25, 2021</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-lg-6 col-md-5">
+                            <div class="footer-widget footer-widget__contact">
+                                <h3 class="footer-widget__title">Contacts</h3>
+                                <p>Flat 20, Reynolds Neck, North <br> Helenaville, FV77 8WS</p>
+                                <p><a href="tel:+2(305)-587-3407">+2(305) 587-3407</a></p>
+                                <p><a href="mailto:info@oberlin.com">info@oberlin.com</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            
+        </footer><!-- /.site-footer -->
+
+
+    </div><!-- /.page-wrapper -->
+
+    <a href="#" data-target="html" class="scroll-to-target scroll-to-top"><i class="fa fa-angle-up"></i></a>
+
+    <div class="side-menu__block">
+
+        <a href="#" class="side-menu__toggler side-menu__close-btn"><i class="fa fa-times"></i>
+            <!-- /.fa fa-close --></a>
+
+        <div class="side-menu__block-overlay custom-cursor__overlay">
+            <div class="cursor"></div>
+            <div class="cursor-follower"></div>
+        </div><!-- /.side-menu__block-overlay -->
+        <div class="side-menu__block-inner ">
+
+            <a href="index.html" class="side-menu__logo"><img src="assets/images/light-logo-1-1.png" alt=""
+                    width="190"></a>
+            <nav class="mobile-nav__container">
+                <!-- content is loading via js -->
+            </nav>
+            <p class="side-menu__block__copy">Copyright &copy; 2021.Company name All rights reserved.<a target="_blank" href="https://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
+            <div class="side-menu__social">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-google-plus"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-pinterest-p"></i></a>
+            </div>
+        </div><!-- /.side-menu__block-inner -->
+    </div><!-- /.side-menu__block -->
+
+    <!-- template scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/bootstrap-datepicker.min.js"></script>
+    <script src="assets/js/bootstrap-select.min.js"></script>
+    <script src="assets/js/isotope.js"></script>
+    <script src="assets/js/jquery.ajaxchimp.min.js"></script>
+    <script src="assets/js/jquery.circleType.js"></script>
+    <script src="assets/js/waypoints.min.js"></script>
+    <script src="assets/js/jquery.counterup.min.js"></script>
+    <script src="assets/js/jquery.lettering.min.js"></script>
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="assets/js/jquery.validate.min.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/TweenMax.min.js"></script>
+    <script src="assets/js/wow.min.js"></script>
+    <script src="assets/js/swiper.min.js"></script>
+    <script src="assets/js/theme.js"></script>
+
+    <script>
+       var userId = sessionStorage.getItem("userId")
+       var token = sessionStorage.getItem("token2");
+       if (userId) {
+        $(".login_and_center").text("个人中心");
+        $(".login_and_center").attr("href", "personal-center.html");
+        $(".main-nav__right").append("<a style='color:#6c757d' class='out_login'>退出登录</a>");
+        
+        $(".out_login").click(function(event) {
+            event.preventDefault(); // 防止链接默认行为
+            sessionStorage.removeItem("userId"); // 移除 userId
+            window.location.href = 'index.html'; // 重定向到首页
+        });
+    }
+
+   
+          
+               
+                $.ajax({
+                url:"http://localhost/ChartController/residentNum",
+                type:"get",
+                headers:{
+                    Token2:token
+                },
+                success:function(data){
+                    $("#residentsNum").html("<span class='counter'>"+data.data+"</span>+")
+                }
+            })
+
+            $.ajax({
+                url:"http://localhost/ChartController/nurseNum",
+                type:"get",
+                headers:{
+                    Token2:token
+                },
+                success:function(data){
+                   
+                    $("#employeeNum").html("<span class='counter'>"+data.data+"</span>+")
+                }
+            })
+            
+            $.ajax({
+                url:"http://localhost/ChartController/userNum",
+                type:"get",
+                headers:{
+                    Token2:token
+                },
+                success:function(data){
+                    // alert(data.data)
+                    $("#userNum").html("<span class='counter'>"+data.data+"</span>+")
+                }
+            })
+            
+
+
+
+     
+    </script>
+</body>
+  
+</html>

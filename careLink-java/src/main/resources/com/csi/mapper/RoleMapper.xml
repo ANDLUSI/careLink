@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace等于mapper接口类的全限定名,这样实现对应 -->
+<mapper namespace="com.csi.mapper.RoleMapper">
+
+    <insert id="save">
+        INSERT INTO
+        role(name,description)
+        VALUE(#{name},#{description})
+    </insert>
+
+    <delete id="remove">
+        DELETE FROM
+        role
+        WHERE id = #{id}
+    </delete>
+
+    <update id="update">
+        UPDATE
+        role
+        SET
+        name = #{name},
+        description=#{description}
+        WHERE id = #{id}
+    </update>
+
+    <select id="list" resultType="com.csi.domain.Role">
+        SELECT
+        *
+        FROM
+        role
+        <where>
+            <if test="key != null and key != ''">
+                AND (name LIKE CONCAT('%', #{key}, '%')
+                OR description LIKE CONCAT('%', #{key}, '%')
+            </if>
+        </where>
+        ORDER BY id DESC
+    </select>
+
+
+
+
+    <select id="login" resultType="com.csi.domain.Employee">
+        SELECT
+        *
+        FROM
+        employee
+        WHERE phone = #{phone}
+        AND password = #{password}
+    </select>
+
+    <select id="getPermission" resultType="String">
+        SELECT p.url
+        FROM employee e
+        LEFT JOIN role_permission rp ON e.role_id = rp.role_id
+        LEFT JOIN permission p ON rp.permission_id = p.id
+        WHERE e.employee_id = #{empId}
+    </select>
+
+    <select id="findById" resultType="com.csi.domain.Employee">
+        SELECT
+        *
+        FROM
+        employee
+        WHERE employee_id = #{empId}
+    </select>
+
+
+</mapper>

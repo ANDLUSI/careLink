@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace等于mapper接口类的全限定名,这样实现对应 -->
+<mapper namespace="com.csi.mapper.UserMapper">
+    <resultMap id="residentMap" type="com.csi.domain.User">
+    </resultMap>
+
+    <insert id="addOldPeople" >
+        INSERT INTO user_resident(user_id,resident_id)VALUE(#{userId},#{residentId})
+    </insert>
+    <delete id="cancelOldPeople">
+        delete from user_resident where user_id=#{userId} and resident_id=#{residentId}
+    </delete>
+
+    <!--密码登录-->
+    <select id="loginP" resultType="com.csi.domain.User">
+        SELECT * FROM user WHERE contact = #{contact} AND password = #{password}
+    </select>
+
+    <!--手机验证码登录-->
+    <select id="loginC" resultType="com.csi.domain.User">
+        SELECT * FROM user WHERE contact = #{contact}
+    </select>
+
+    <!--注册-->
+    <insert id="register" parameterType="com.csi.domain.User">
+        INSERT INTO user(contact,password) VALUE(#{contact},#{password})
+    </insert>
+
+    <!--查找手机号是否存在-->
+    <select id="findContact" resultType="int">
+        SELECT COUNT(contact) FROM user WHERE contact = #{contact}
+    </select>
+
+    <select id="findResidentsById" resultType="com.csi.domain.Resident">
+        SELECT  t2.resident_id,t2.relationship, t3.*
+        FROM `user` t1 LEFT JOIN user_resident t2
+        ON (t1.id=t2.user_id)
+        LEFT JOIN resident t3
+        ON(t2.resident_id=t3.id)
+        WHERE t1.id=#{userId}
+    </select>
+
+    <select id="findById" resultType="com.csi.domain.User">
+        select * from user where id=#{userId}
+    </select>
+
+    <!--修改个人信息-->
+    <update id="modifyUser" parameterType="com.csi.domain.User">
+        UPDATE user SET name=#{name},gender=#{gender},contact=#{contact},headPhoto=#{headPhoto},status=#{status} WHERE id=#{id}
+    </update>
+
+    <update id="modifyPassword">
+        UPDATE user SET password=#{password} WHERE id=#{userId}
+    </update>
+
+    <select id="list" resultType="com.csi.domain.User">
+        select * from user
+        <where>
+            <if test="userName!=null">
+                name like '%${userName}%'
+            </if>
+        </where>
+    </select>
+
+<!--    修改用户状态-->
+    <update id="modifyStatus">
+        UPDATE user SET status=#{userStatus}  where id=#{userId}
+    </update>
+
+
+</mapper>

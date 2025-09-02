@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace等于mapper接口类的全限定名,这样实现对应 -->
+<mapper namespace="com.csi.mapper.HealthRecordMapper">
+
+    <resultMap id="findHealthRecordMap" type="com.csi.domain.HealthRecord">
+        <id property="id" column="id"/>
+        <result property="residentId" column="resident_id"/>
+        <result property="medicalRecord" column="medical_record"/>
+        <result property="report" column="report"/>
+        <association property="resident" javaType="com.csi.domain.Resident">
+            <id property="id" column="id"/>
+            <result property="name" column="name"/>
+        </association>
+    </resultMap>
+
+    <!--老人入住同时新增老人id-->
+    <insert id="saveId">
+        INSERT INTO health_record(resident_id) VALUE(#{residentId})
+    </insert>
+
+    <!--添加病历+身体情况报告-->
+    <update id="addHealthRecord" parameterType="com.csi.domain.HealthRecord">
+        UPDATE health_record
+        SET medical_record=#{medicalRecord},report=#{report}
+        WHERE resident_id=#{residentId}
+    </update>
+
+    <!--删除信息-->
+    <delete id="deleteHRById">
+        DELETE FROM health_record WHERE id=#{id}
+    </delete>
+
+    <!--修改病历-->
+    <update id="modifyMedicalRecord" parameterType="com.csi.domain.HealthRecord">
+        UPDATE health_record
+        SET medical_record=#{medicalRecord}
+        WHERE id=#{id}
+    </update>
+
+    <!--修改身体情况报告-->
+    <update id="modifyReport" parameterType="com.csi.domain.HealthRecord">
+        UPDATE health_record
+        SET report=#{report}
+        WHERE id=#{id}
+    </update>
+
+    <!--通过id查询-->
+    <select id="findById" resultMap="findHealthRecordMap">
+        SELECT h.*,r.name FROM health_record h
+        LEFT JOIN resident r
+        ON h.resident_id=r.id
+        WHERE h.id=#{id}
+    </select>
+
+    <!--查询全部-->
+    <select id="findAllHR" resultMap="findHealthRecordMap">
+        SELECT h.*,r.name FROM health_record h
+        LEFT JOIN resident r
+        ON h.resident_id=r.id
+        <where>
+            <if test="key != null and key != ''">
+                AND r.name LIKE CONCAT('%', #{key}, '%')
+            </if>
+        </where>
+    </select>
+</mapper>

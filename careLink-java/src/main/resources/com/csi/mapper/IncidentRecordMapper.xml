@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace等于mapper接口类的全限定名,这样实现对应 -->
+<mapper namespace="com.csi.mapper.IncidentRecordMapper">
+
+    <!-- 插入一条记录 -->
+    <insert id="save" parameterType="com.csi.domain.IncidentRecord">
+        INSERT INTO incident_record (
+        resident_id,
+        incident_type,
+        occurrence_time,
+        description,
+        resolution,
+        handler_id,
+        log_time
+        ) VALUES (
+        #{residentId},
+        #{incidentType},
+        #{occurrenceTime},
+        #{description},
+        #{resolution},
+        #{handlerId},
+        #{logTime}
+        )
+    </insert>
+
+    <!-- 删除一条记录 -->
+    <delete id="remove" parameterType="int">
+        DELETE FROM incident_record WHERE id = #{id}
+    </delete>
+
+    <!-- 更新一条记录 -->
+    <update id="update" parameterType="com.csi.domain.IncidentRecord">
+        UPDATE incident_record
+        SET
+        resident_id = #{residentId},
+        incident_type = #{incidentType},
+        occurrence_time = #{occurrenceTime},
+        description = #{description},
+        resolution = #{resolution},
+        handler_id = #{handlerId},
+        log_time = #{logTime}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 查询单条记录 -->
+    <select id="findById" parameterType="int" resultType="com.csi.domain.IncidentRecord">
+        SELECT
+        *
+        FROM incident_record
+        WHERE id = #{id}
+    </select>
+
+    <!-- 模糊查询+查询全部 -->
+    <select id="list" parameterType="string" resultType="com.csi.domain.IncidentRecord">
+        SELECT
+        *
+        FROM incident_record
+        <where>
+            <if test="key != null and key != ''">
+                AND (incident_type LIKE CONCAT('%', #{key}, '%')
+                OR description LIKE CONCAT('%', #{key}, '%')
+                OR resolution LIKE CONCAT('%', #{key}, '%'))
+            </if>
+        </where>
+        ORDER BY id DESC
+    </select>
+
+</mapper>

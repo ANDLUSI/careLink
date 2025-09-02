@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace等于mapper接口类的全限定名,这样实现对应 -->
+<mapper namespace="com.csi.mapper.ContractMapper">
+
+    <resultMap id="findContractMap" type="com.csi.domain.Contract">
+        <id property="id" column="id"/>
+        <result property="residentId" column="resident_id"/>
+        <result property="contractNumber" column="contract_number"/>
+        <result property="startDate" column="start_date"/>
+        <result property="endDate" column="end_date"/>
+        <result property="filePath" column="file_path"/>
+        <association property="resident" javaType="com.csi.domain.Resident">
+            <id property="id" column="id"/>
+            <result property="name" column="name"/>
+        </association>
+    </resultMap>
+
+    <!--老人入住同时新增老人id-->
+    <insert id="saveId">
+        INSERT INTO contract(resident_id) VALUE(#{residentId})
+    </insert>
+
+    <!--添加合同信息-->
+    <update id="addContract" parameterType="com.csi.domain.Contract">
+        UPDATE contract
+        SET contract_number=#{contractNumber},start_date=#{startDate},
+        end_date=#{endDate},file_path=#{filePath}
+        WHERE resident_id=#{residentId}
+    </update>
+
+    <!--删除合同-->
+    <delete id="deleteContractById">
+        DELETE FROM contract WHERE id=#{id}
+    </delete>
+
+    <!--修改合同-->
+    <update id="modifyContract" parameterType="com.csi.domain.Contract">
+        UPDATE contract
+        SET contract_number=#{contractNumber},start_date=#{startDate},
+        end_date=#{endDate},file_path=#{filePath}
+        WHERE id=#{id}
+    </update>
+
+    <!--通过合同id查询合同-->
+    <select id="findContractById" resultMap="findContractMap">
+        SELECT c.*,r.name FROM contract c
+        LEFT JOIN resident r
+        ON c.resident_id=r.id
+        WHERE c.id=#{id}
+    </select>
+
+    <!--查询全部合同+通过老人id查询+通过合同编号查询-->
+    <select id="findAllContract" resultMap="findContractMap">
+        SELECT c.*, r.name
+        FROM contract c
+        LEFT JOIN resident r
+        ON c.resident_id = r.id
+        <where>
+            <if test="key != null and key != ''">
+                AND resident_id = #{key} OR contract_number LIKE CONCAT('%', #{key}, '%')
+            </if>
+        </where>
+    </select>
+</mapper>

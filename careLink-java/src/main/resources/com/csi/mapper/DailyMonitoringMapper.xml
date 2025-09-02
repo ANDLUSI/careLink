@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace等于mapper接口类的全限定名,这样实现对应 -->
+<mapper namespace="com.csi.mapper.DailyMonitoringMapper">
+    <select id="findById" resultType="com.csi.domain.DailyMonitoring">
+        SELECT * FROM daily_monitoring
+        WHERE resident_id=#{id}
+        ORDER BY monitoring_date DESC
+        LIMIT 0, 7
+    </select>
+
+    <select id="findByDate" resultType="com.csi.domain.DailyMonitoring">
+        SELECT * FROM daily_monitoring
+        <where>
+            <if test="residentId!=null||residentId!=' ' ">
+                resident_id=#{residentId}
+            </if>
+            <if test="monitoringDate!=null">
+                monitoring_date=#{monitoringDate}
+            </if>
+        </where>
+        ORDER BY monitoring_date DESC
+    </select>
+
+    <select id="list" resultType="com.csi.domain.DailyMonitoring">
+        SELECT  t1.*,t2.name 'residentName'
+        FROM daily_monitoring t1 JOIN resident t2
+        ON t1.resident_id=t2.id
+        <where>
+            <if test="name!=null">
+                t2.name like CONCAT('%', #{name}, '%')
+            </if>
+            <if test="monitoringDate!=null">
+                and t1.monitoring_date = #{monitoringDate}
+            </if>
+        </where>
+        ORDER BY t1.monitoring_date DESC
+
+
+    </select>
+   <update id="modify">
+       UPDATE daily_monitoring SET resident_id=#{residentId},
+       monitoring_date=#{monitoringDate},
+       blood_pressure=#{bloodPressure} ,
+       blood_sugar=#{bloodSugar},heart_rate=#{heartRate},temperature=#{temperature},notes=#{notes}
+       where id=#{id}
+   </update>
+
+    <insert id="add">
+        INSERT INTO daily_monitoring(resident_id,monitoring_date,blood_pressure,blood_sugar,heart_rate,temperature,notes)
+        VALUE
+        (#{residentId},#{monitoringDate},#{bloodPressure},#{bloodSugar},#{heartRate},#{temperature},#{notes})
+    </insert>
+
+    <delete id="deleteById">
+        delete from daily_monitoring where id=#{id}
+    </delete>
+
+    <delete id="batchDelete">
+        DELETE FROM  daily_monitoring WHERE id IN
+        <foreach item="item" collection="deleteList" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+</mapper>

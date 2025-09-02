@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career || Oberlin || Senior Care Responsive HTML 5 Template</title>
+
+    <!-- favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="assets/images/favicon/site.webmanifest">
+
+    <!-- plugins styles -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Baloo+2:400,500,600,700,800%7CLato:100,300,400,700,900%7COpen+Sans:300,400,600,700,800%7CRoboto:300,400,500,700,900%7CRubik:300,400,500,700,900&display=swap">
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/css/hover-min.css">
+    <link rel="stylesheet" href="assets/css/swiper.min.css">
+    <link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="assets/css/oberlin-icons.css">
+
+    <!-- template styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+
+    <link rel="stylesheet" href="assets/css/servics1.css">
+    <style>
+           body {
+            display: flex;
+            flex-direction: column; /* 或者使用 row 如果希望并排显示 */
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* 使用 min-height 而不是 height */
+            margin: 0;
+            background-color: #f0f0f0;
+            background-image: url("assets/images/services1/back.jpg");
+        }
+
+        .heart-container {
+            position: relative;
+            width: 600px;
+            height: 600px;
+            margin-bottom: 20px; /* 为 .words 留出空间 */
+        }
+
+        .heart-item {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform-origin: 50% 50%;
+            animation: orbit 5s linear forwards;
+        }
+
+        @keyframes orbit {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        .heart-item img {
+            width: 105px;
+            height: 105px;
+        }
+
+        .activity-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .status-upcoming {
+            background-color: rgba(222, 140, 140, 0.2);
+            transition: background-color 0.7s ease;
+        }
+
+        .status-ongoing {
+            background-color: rgba(249,242,134, 0.5);
+            transition: background-color 0.7s ease;
+        }
+
+        .status-ended {
+            background-color: rgba(221, 236, 246, 0.27);
+        }
+
+        .words {
+            position: relative; /* 改为相对定位 */
+            width: 500px;
+            height: auto; /* 自动高度 */
+            /* border: 1px solid red; */
+            margin-top: 80px;
+            margin-left: 700px; /* 移除固定左边距 */
+        }
+
+        .words p {
+            color: rgb(16, 54, 36);
+            font-weight: 1em;
+        }
+        .career-one{
+            /* background-image: url("assets/images/services1/back.jpg"); */
+        }
+        .btn-primary {
+    background: rgba(240, 180, 144, 0.5);
+    border: 1px solid white;
+    font-weight: bold;
+    color: black;
+    transition: background-color 0.3s ease; /* 添加过渡效果 */
+}
+
+/* 鼠标悬停时的样式 */
+.btn-primary:hover {
+    background: rgba(240, 180, 144, 0.8); /* 更深的颜色 */
+}
+    </style>
+
+
+</head>
+
+<body>
+
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div></div>
+            <div></div>
+        </div>
+    </div><!-- /.preloader -->
+
+    <div class="page-wrapper">
+
+
+        <nav class="main-nav-one main-nav-one__inner-page stricky">
+            <div class="container">
+                <div class="inner-container">
+                    <div class="logo-box">
+                        <a href="index.html" class="main-nav-one__logo">
+                            <img src="assets/images/logo.png" alt="" width="219" class="logo_img">
+                            <!-- <img src="assets/images/dark-logo-1-1.png" width="219" class="main-nav-one__mobile-logo"
+                                alt=""> -->
+                        </a>
+                    </div><!-- /.logo-box -->
+                    <div class="main-nav__main-navigation">
+                        <ul class="main-nav__navigation-box">
+                            <li class="dropdown">
+                                <a href="index.html">首页</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="about-1.html">设施介绍</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="services1.html">服务介绍</a>
+
+                            </li>
+                            <li class="dropdown">
+                                <a href="#">志愿活动</a>
+                                <ul>
+                                    <li><a href="story.html">志愿活动</a></li>
+                                    <li><a href="career.html">志愿者申请入口</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="contact.html">在线咨询</a>
+
+                            </li>
+                        </ul><!-- /.main-nav__navigation-box -->
+                    </div><!-- /.main-nav__main-navigation -->
+                    <div class="main-nav__right">
+                        <a href="contact.html" class="thm-btn main-nav-one__btn login_and_center"><i
+                                class="far fa-clock"></i>
+                            登录/注册</a>
+                    </div><!-- /.main-nav__right -->
+                </div><!-- /.inner-container -->
+            </div><!-- /.container -->
+        </nav><!-- /.main-nav-one -->
+
+        <section class="page-header"
+            style="background-image: url(assets/images/services1/volunteer.jpg);background-position: -1px 150px;">
+            <div class="container">
+                <h2>了不起的你我他</h2>
+                <ul class="list-unstyled thm-breadcrumb">
+                    <li><a href="index.html">首页</a></li>
+                    <li><span>志愿者，他们在平凡小事中书写奉献与爱的故事<br>
+                            他们用沾满泥土的脚步丈量着人生价值
+                        </span></li>
+                </ul><!-- /.list-unstyled -->
+            </div><!-- /.container -->
+        </section><!-- /.page-header -->
+
+        <section class="career-one">
+            <div class="container">
+                <div class="row">
+
+                </div><!-- /.container -->
+                <div class="col-2-lg-2">
+                    <div class="career-one__block">
+                        <div class="block-title">
+                            <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-default">志愿活动一览</button>
+                                </div>
+                            </div>
+
+
+                            <!-- 数据展示区域 -->
+                            <div id="activities-container">
+                                </table>
+                            </div>
+
+                        </div><!-- /.career-one__block -->
+                    </div><!-- /.col-lg-6 -->
+                    <!-- Modal -->
+                    <div class="modal fade" id="applyModal" tabindex="-1" role="dialog"
+                        aria-labelledby="applyModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="applyModalLabel">申请志愿活动</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="applyForm">
+                                        <input type="hidden" id="activityId" name="activityId" value="">
+                                        <input type="hidden" id="userId" name="userId" value="">
+
+                                        <div class="form-group">
+                                            <label for="name">活动名称</label>
+                                            <input type="text" class="form-control" id="name"
+                                                src="./assets/images/services1/1.jpg" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="applicationStart">报名开始时间</label>
+                                            <input type="text" class="form-control" id="applicationStart" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="activeStart">活动开始日期</label>
+                                            <input type="text" class="form-control" id="activeStart" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="activeEnd">活动截至时间</label>
+                                            <input type="text" class="form-control" id="activeEnd" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="location">活动地点</label>
+                                            <input type="text" class="form-control" id="location" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="description">活动描述</label>
+                                            <textarea class="form-control" id="description" rows="3"
+                                                readonly></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="status">状态</label>
+                                            <input type="text" class="form-control" id="status" readonly>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                                    <button type="button" class="btn btn-primary"
+                                        onclick="submitApplication()">提交</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        </section><!-- /.career-one -->
+
+        <section >
+            <div class="btn-group" role="group">
+                <div class="heart-container">
+                    <script>
+                        const container = document.querySelector('.heart-container');
+                        const imageUrls = [
+                            "./assets/images/services1/beautiful.jpg",
+                            "./assets/images/services1/1.jpg",
+                            "./assets/images/services1/2.jpg",
+                            "./assets/images/services1/3.jpg",
+                            "./assets/images/services1/5.jpg",
+                            "./assets/images/services1/6.jpg",
+                            "./assets/images/services1/7.jpg",
+                            "./assets/images/services1/4.jpg",
+                            "./assets/images/services1/9.jpg",
+                            "i./assets/images/services1/10.jpg",
+                            "./assets/images/services1/love.jpg",
+                            "./assets/images/services1/old1.jpg",
+                            "./assets/images/services1/old2.jpg",
+                            "./assets/images/services1/8.jpg",
+                            "./assets/images/services1/dragon.jpg",
+                            "./assets/images/services1/flower.jpg",
+                            "./assets/images/services1/food.jpg",
+                            "./assets/images/services1/old5.jpg",
+                            "./assets/images/services1/tree.jpg",
+                            "./assets/images/services1/old3.jpg",
+                        ];
+
+                        for (let i = 0; i < imageUrls.length; i++) {
+                            const item = document.createElement('div');
+                            item.className = 'heart-item';
+
+                            // Calculate position on the heart curve
+                            const t = (Math.PI / 10) * i;
+                            const x = 150 * Math.pow(Math.sin(t), 3);
+                            const y = -(130 * Math.cos(t) - 50 * Math.cos(2 * t) - 20 * Math.cos(3 * t) - 10 * Math.cos(4 * t));
+
+                            item.style.top = `calc(50% + ${y}px)`;
+                            item.style.left = `calc(50% + ${x}px)`;
+
+                            const img = document.createElement('img');
+                            img.src = imageUrls[i];
+                            img.alt = "Image";
+                            item.appendChild(img);
+                            container.appendChild(item);
+
+                            // Add delay to each item for dynamic effect
+                            setTimeout(() => {
+                                item.classList.add('animate');
+                            }, i * 100);
+                        }
+
+                        // Remove animation after completion
+                        setTimeout(() => {
+                            const heartItems = document.querySelectorAll('.heart-item');
+                            heartItems.forEach(item => {
+                                item.style.animation = 'none';
+                            });
+                        }, 5000);
+                    </script>
+                    <div class="heart-container">
+
+                        </script>
+                        <div class="words">
+                            <h1>桑榆未晚&nbsp;安享余晖</h1>
+                            <p>人的晚年，可以是温馨、热闹、被牵挂关心的</p>
+                            <p>唯独不能是<b>孤独的</b></p>
+                            <p>所有的老人应该被<b>认真呵护对待</b></p>
+                            <p>不该因为年龄而理所应当被忽视喜怒哀乐</p>
+                            <p>更不该在日复一日的等待中独自荒芜</p>
+                            <p>最治愈的地方在<b>养老</b></p>
+                            <p>希望更多年轻的血液温暖沉睡的心</p>
+                            <p>让志愿精神持续闪光</p>
+                            <p>跟我们一起实现</p>
+                            <p><b>老有所依，老有所养，老有所愉</b></p>
+                        </div>
+                    </div>
+                </div>
+
+        </section><!-- /.contact-one -->
+
+        <footer class="site-footer">
+            <div class="site-footer__main">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-4 col-lg-6 col-md-5">
+                            <div class="footer-widget footer-widget__about">
+                                <h3 class="footer-widget__title">服务目的</h3><!-- /.footer-widget__title -->
+                                <p>一圈圈年轮，一重重岁月，以一种更积极的态度认识衰老，关注衰老，也是为了每个人生命中，终将来临的那场落日</p>
+
+                            </div><!-- /.footer-widget -->
+                        </div><!-- /.col-xl-4 col-lg-6 col-md-5 -->
+                        <div class="col-xl-2 col-lg-6 col-md-5">
+                            <div class="footer-widget footer-widget__links">
+                                <h3 class="footer-widget__title">服务</h3><!-- /.footer-widget__title -->
+                                <ul class="list-unstyled footer-widget__links-list">
+                                    <li><a href="about-1.html">关于我们</a></li>
+                                    <li><a href="living-option.html">活动</a></li>
+                                    <li><a href="event.html">事件</a></li>
+                                    <li><a href="team.html">志愿</a></li>
+                                    <li><a href="donation-causes.html">捐款</a></li>
+                                    <li><a href="career.html">工作</a></li>
+                                </ul><!-- /.list-unstyled footer-widget__links-list -->
+                            </div><!-- /.footer-widget footer-widget__links -->
+                        </div><!-- /.col-xl-2 col-lg-6 col-md-5 -->
+                        <div class="col-xl-3 col-lg-6 col-md-5">
+                            <div class="footer-widget footer-widget__post">
+                                <h3 class="footer-widget__title">资讯活动</h3><!-- /.footer-widget__title -->
+                                <div class="footer-widget__post-wrap">
+                                    <div class="footer-widget__post-single">
+                                        <div class="footer-widget__post-image">
+                                            <img src="assets/images/services1/oldmen.jpg" alt="">
+                                        </div><!-- /.footer-widget__post-image -->
+                                        <div class="footer-widget__post-content">
+                                            <h3><a href="blog-details.html"> <br> </a></h3>
+                                            <span>Mar 25, 2021</span>
+                                        </div><!-- /.footer-widget__post-content -->
+                                    </div><!-- /.footer-widget__post-single -->
+                                    <div class="footer-widget__post-single">
+                                        <div class="footer-widget__post-image">
+                                            <img src="assets/images/services1/oldwoman.jpg" alt="">
+                                        </div><!-- /.footer-widget__post-image -->
+                                        <div class="footer-widget__post-content">
+                                            <h3><a href="blog-details.html"> <br> </a></h3>
+                                            <span>Mar 25, 2021</span>
+                                        </div><!-- /.footer-widget__post-content -->
+                                    </div><!-- /.footer-widget__post-single -->
+                                </div><!-- /.footer-widget__post-wrap -->
+                            </div><!-- /.footer-widget footer-widget__post -->
+                        </div><!-- /.col-xl-3 col-lg-6 col-md-5 -->
+
+                        <div class="col-xl-3 col-lg-6 col-md-5">
+                            <div class="footer-widget footer-widget__contact">
+                                <h3 class="footer-widget__title">联系我们</h3><!-- /.footer-widget__title -->
+                                <p>愿你无论在任何年纪，都能被时光温柔以待<br>智慧康养&nbsp;&nbsp;欢迎每一位想要了解或者加入我们家庭的成员。</p>
+                                <p><a href="tel:+2(305)-587-3407">+2(305) 587-3407</a></p>
+                                <p><a href="mailto:info@oberlin.com">info@oberlin.com</a></p>
+                            </div><!-- /.footer-widget footer-widget__contact -->
+                        </div><!-- /.col-xl-3 col-lg-6 col-md-5 -->
+                    </div><!-- /.row -->
+                </div><!-- /.container -->
+            </div><!-- /.site-footer__main -->
+            <!-- <div class="site-footer__bottom">
+                <div class="container">
+                    <p>Oberlin <i class="far fa-copyright"></i> 2021 All Right Reserved</p>
+                    <ul class="list-unstyled site-footer__menu">
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul> -->
+            <!-- /.site-footer__menu -->
+            <!-- </div> -->
+            <!-- /.container -->
+            <!-- </div> -->
+            <!-- /.site-footer__bottom -->
+        </footer><!-- /.site-footer -->
+
+
+
+    </div><!-- /.page-wrapper -->
+
+    <a href="#" data-target="html" class="scroll-to-target scroll-to-top"><i class="fa fa-angle-up"></i></a>
+
+    <div class="side-menu__block">
+
+        <a href="#" class="side-menu__toggler side-menu__close-btn"><i class="fa fa-times"></i>
+            <!-- /.fa fa-close --></a>
+
+        <div class="side-menu__block-overlay custom-cursor__overlay">
+            <div class="cursor"></div>
+            <div class="cursor-follower"></div>
+        </div><!-- /.side-menu__block-overlay -->
+        <div class="side-menu__block-inner ">
+
+            <a href="index.html" class="side-menu__logo"><img src="assets/images/light-logo-1-1.png" alt=""
+                    width="190"></a>
+            <nav class="mobile-nav__container">
+                <!-- content is loading via js -->
+            </nav>
+            <p class="side-menu__block__copy">Copyright &copy; 2021.Company name All rights reserved.<a target="_blank"
+                    href="https://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
+            <div class="side-menu__social">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-google-plus"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-pinterest-p"></i></a>
+            </div>
+        </div><!-- /.side-menu__block-inner -->
+    </div><!-- /.side-menu__block -->
+
+    <!-- template scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/bootstrap-datepicker.min.js"></script>
+    <script src="assets/js/bootstrap-select.min.js"></script>
+    <script src="assets/js/isotope.js"></script>
+    <script src="assets/js/jquery.ajaxchimp.min.js"></script>
+    <script src="assets/js/jquery.circleType.js"></script>
+    <script src="assets/js/waypoints.min.js"></script>
+    <script src="assets/js/jquery.counterup.min.js"></script>
+    <script src="assets/js/jquery.lettering.min.js"></script>
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="assets/js/jquery.validate.min.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/TweenMax.min.js"></script>
+    <script src="assets/js/wow.min.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- 引入 jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- 引入 Popper.js 通过 Google CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js"></script>
+    <!-- 引入 Bootstrap JS 通过 Google CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- 引入 moment.js 用于日期格式化 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script>
+        var userId = sessionStorage.getItem("userId");
+        if (userId) {
+            $(".login_and_center").text("个人中心")
+            $(".login_and_center").attr("href", "personal-center.html")
+        }
+
+        $(document).ready(function () {
+            // 初始化时获取所有活动
+            fetchActivities();
+        });
+
+        function fetchActivities(status = '') {
+            $.ajax({
+                url: 'http://localhost/ActivityController/list',
+                method: 'GET',
+                headers:{
+                   Token2: sessionStorage.getItem("token2"),
+                } ,
+                data: { status: status },
+                success: function (response) {
+                    displayActivities(response);
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error fetching activities:", error);
+                }
+            });
+        }
+
+        function filterActivities(status) {
+            fetchActivities(status);
+        }
+
+        function displayActivities(response) {
+            var container = $('#activities-container');
+            var activities = response.data.list;
+
+            if (!Array.isArray(activities)) {
+                console.error("Expected an array but got:", activities);
+                container.html('<p>无法加载活动数据，请稍后再试。</p>');
+                return;
+            }
+
+            if (activities.length === 0) {
+                container.html('<p>暂无相关活动</p>');
+            } else {
+                var html = '';
+                html += '<table class="table table-condensed">';
+                html += '<tr>';
+                html += '<td class="active">活动名称</td>';
+                html += '<td class="active">报名开始时间</td>';
+                html += '<td class="success">活动开始日期</td>';
+                html += '<td class="warning">活动截至时间</td>';
+                html += '<td class="active">活动地点</td>';
+                html += '<td class="success">活动描述</td>';
+                html += '<td class="warning">状态</td>';
+                html += '<td class="info">操作</td>'; // 添加操作列
+                html += '</tr>';
+
+                activities.forEach(function (activity) {
+                    var statusText = '';
+                    var actionButton = '';
+                    var rowClass = '';
+
+                    if (activity.activeStatus == 1) {
+                        statusText = '进行中';
+                        rowClass = 'status-ongoing';
+                    } else if (activity.activeStatus == -1) {
+                        statusText = '已结束';
+                        rowClass = 'status-ended';
+                    } else if (activity.activeStatus == 0) {
+                        statusText = '报名中';
+                        rowClass = 'status-upcoming';
+
+                        actionButton = '<button class="btn btn-primary" style="background:rgba(240,180,144,0.5); border:1px solid white;font-weight: bold;" onclick="showApplyForm(' + JSON.stringify(activity).replace(/"/g, '&quot;') + ')">申请</button>';
+                    } else {
+                        statusText = '未知状态';
+                    }
+
+                    html += '<tr class="' + rowClass + '">';
+                    html += '<td class="active">' + activity.name + '</td>';
+                    html += '<td class="active">' + formatDate(activity.applicationStart) + '</td>';
+                    html += '<td class="success">' + formatDate(activity.activeStart) + '</td>';
+                    html += '<td class="warning">' + formatDate(activity.activeEnd) + '</td>';
+                    html += '<td class="active">' + activity.location + '</td>';
+                    html += '<td class="success">' + activity.description + '</td>';
+                    html += '<td class="warning">' + statusText + '</td>';
+                    html += '<td class="info">' + actionButton + '</td>'; // 添加操作按钮
+                    html += '</tr>';
+                });
+
+                html += '</table>';
+                container.html(html);
+            }
+        }
+
+        function formatDate(date) {
+            return moment(date).format('YYYY-MM-DD HH:mm:ss');
+        }
+        function showApplyForm(activity) {
+            $('#activityId').val(activity.id);
+            $('#name').val(activity.name);
+            $('#applicationStart').val(formatDate(activity.applicationStart));
+            $('#activeStart').val(formatDate(activity.activeStart));
+            $('#activeEnd').val(formatDate(activity.activeEnd));
+            $('#location').val(activity.location);
+            $('#description').val(activity.description);
+            $("#userId").val(userId);
+
+            var statusText = '';
+            if (activity.activeStatus == 0) {
+                statusText = '报名中';
+            } else if (activity.activeStatus == -1) {
+                statusText = '已结束';
+            } else if (activity.activeStatus == 1) {
+                statusText = '进行中';
+            } else {
+                statusText = '未知状态';
+            }
+
+            $('#status').val(statusText);
+
+            $('#applyModal').modal('show');
+        }
+
+        function submitApplication() {
+            var formData = {
+                activityId: $('#activityId').val(),
+                name: $('#name').val(),
+                applicationStart: $('#applicationStart').val(),
+                activeStart: $('#activeStart').val(),
+                activeEnd: $('#activeEnd').val(),
+                location: $('#location').val(),
+                description: $('#description').val(),
+                status: $('#status').val()
+
+            };
+            var submit = $("#applyForm").serialize();
+            console.log(submit);
+
+            $.ajax({
+                url: 'http://localhost/VolunteerController/add',
+                method: 'POST',
+                headers:{
+                   Token2: sessionStorage.getItem("token2"),
+                } ,
+                data: submit,
+                success: function (response) {
+                    console.log("Application successful:", response);
+                    alert("申请成功！");
+                    $('#applyModal').modal('hide');
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error applying for activity:", error);
+                    alert("申请失败，请重试。");
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

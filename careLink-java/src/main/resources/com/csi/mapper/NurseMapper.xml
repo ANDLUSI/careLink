@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace等于mapper接口类的全限定名,这样实现对应 -->
+<mapper namespace="com.csi.mapper.NurseMapper">
+
+    <resultMap id="nurseResultMap" type="Nurse">
+        <!-- 映射Nurse类的基本属性 -->
+        <id property="id" column="id"/>
+        <result property="employeeId" column="employee_id"/>
+        <result property="name" column="name"/>
+        <result property="experience" column="experience"/>
+        <result property="certificate" column="certificate"/>
+        <result property="rank" column="rank"/>
+
+        <!-- 关联映射Employee类 -->
+        <association property="employee" javaType="Employee">
+            <result property="employeeId" column="employee_id"/>
+            <result property="name" column="name"/>
+            <result property="gender" column="gender"/>
+            <result property="age" column="age"/>
+            <result property="phone" column="phone"/>
+            <result property="password" column="password"/>
+            <result property="address" column="address"/>
+            <result property="salary" column="salary"/>
+            <result property="roleId" column="role_id"/>
+            <result property="hireDate" column="hire_date"/>
+            <result property="updatedAt" column="updated_at"/>
+            <result property="createBy" column="create_by"/>
+            <result property="updateBy" column="update_by"/>
+        </association>
+    </resultMap>
+
+
+
+    <!-- 插入一条记录 -->
+    <insert id="save" parameterType="com.csi.domain.Nurse">
+        INSERT INTO nurse (
+        employee_id,
+        name,
+        experience,
+        certificate,
+        rank
+        ) VALUES (
+        #{employeeId},
+        #{name},
+        #{experience},
+        #{certificate},
+        #{rank}
+        )
+    </insert>
+
+    <!-- 删除一条记录 -->
+    <delete id="remove" parameterType="int">
+        DELETE FROM nurse WHERE id = #{id}
+    </delete>
+
+    <!-- 更新一条记录 -->
+    <update id="update" parameterType="com.csi.domain.NurseDTO">
+        UPDATE nurse
+        SET
+        employee_id = #{employeeId},
+        name = #{name},
+        experience = #{experience},
+        certificate = #{certificate},
+        rank = #{rank}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 查询单条记录 -->
+    <select id="findById" parameterType="int" resultMap="nurseResultMap">
+        SELECT
+        e.*,n.experience,n.certificate,n.rank
+        FROM nurse n,employee e
+        WHERE n.employee_id = e.employee_id
+        AND n.employee_id = #{employeeId}
+    </select>
+
+    <!-- 模糊查询+查询全部 -->
+    <select id="list" parameterType="string" resultType="com.csi.domain.Nurse">
+        SELECT
+        *
+        FROM nurse
+        <where>
+            <if test="key != null and key != ''">
+                AND (name LIKE CONCAT('%', #{key}, '%')
+                OR experience LIKE CONCAT('%', #{key}, '%')
+                OR rank LIKE CONCAT('%', #{key}, '%'))
+            </if>
+        </where>
+        ORDER BY id DESC
+    </select>
+
+</mapper>

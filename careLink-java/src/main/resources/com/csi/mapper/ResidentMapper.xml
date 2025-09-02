@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace等于mapper接口类的全限定名,这样实现对应 -->
+<mapper namespace="com.csi.mapper.ResidentMapper">
+   <select id="findByNameAndIDCard" resultType="com.csi.domain.Resident">
+         select * from resident where name=#{name} and idCard=#{idCard}
+         ORDER BY admission_date  DESC
+   </select>
+
+    <!-- 添加入住人 -->
+    <insert id="add" parameterType="com.csi.domain.Resident" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO resident (
+        name, idCard, born_date,contact, gender,room_no,
+        admission_date, departure_date, room_status,
+        emergency,emergency_contact, healthy_status, employee_id
+        ) VALUES (
+        #{name}, #{idCard}, #{bornDate},#{contact}, #{gender},#{roomNo},
+        #{admissionDate}, #{departureDate}, #{roomStatus},
+        #{emergency},#{emergencyContact}, #{healthyStatus}, #{employeeId}
+        )
+    </insert>
+
+    <!-- 根据ID删除入住人 -->
+    <delete id="deleteById" parameterType="int">
+        DELETE FROM resident WHERE id = #{id}
+    </delete>
+
+    <!-- 批量删除入住人 -->
+    <delete id="batchDelete" parameterType="java.util.List">
+        DELETE FROM resident WHERE id IN
+        <foreach item="item" collection="deleteList" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <!-- 修改入住人信息 -->
+    <update id="modify" parameterType="com.csi.domain.Resident">
+        UPDATE resident
+        SET name = #{name},
+        idCard = #{idCard},
+        gender = #{gender},
+        contact=#{contact},
+        room_no = #{roomNo},
+        admission_date = #{admissionDate},
+        departure_date = #{departureDate},
+        room_status = #{roomStatus},
+        emergency = #{emergency},
+        emergency_contact=#{emergencyContact},
+        healthy_status = #{healthyStatus},
+        employee_id = #{employeeId}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 通过名字或身份证号模糊查询入住人 -->
+    <select id="list" resultType="com.csi.domain.Resident">
+        SELECT *,FLOOR(DATEDIFF(CURDATE(), born_date) / 365.25) AS age  FROM resident
+        <where>
+            <if test="name!=null">
+                name LIKE CONCAT('%', #{name}, '%')
+            </if>
+        </where>
+        ORDER BY admission_date DESC
+    </select>
+
+
+</mapper>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="assets/css/login.css"/>
+    <script src="assets/js/jquery.min.js"></script>
+</head>
+<body>
+    <div class="all">
+        <div class="head">
+            <img src="assets/images/logo.png" id="logoImg"/>
+            <span>CareLink康养平台</span>
+        </div>
+        <div class="content">
+            <div class="form_div">
+                <div class="form_head">
+                    <span class="login_span">密码登录</span>
+                    <span class="code_login_span">验证码登录</span>
+                </div>
+                <div class="form_content">
+                    <form id="login_from">
+                        <p id="phone_p">
+                            <input type="text" name="contact" placeholder="手机号" class="phone_input" onblur="phoneCheck(this)"/>
+                        </p>
+                        <span id="error_span">手机号输入有误*</span>
+                        <p id="pwd_p">
+                            <input type="password" name="password" placeholder="密码" class="pwd_input"/>
+                        </p>
+                        <p id="code_p">
+                            <input type="text" name="code" placeholder="验证码" class="code_input"/>
+                            <div class="get_code" id="di">点击获取</div>
+                        </p>
+                        <div class="form_content_a">
+                            <a href="javascript:void(0)" class="wang">忘记密码？</a>
+                            <a href="register.html" class="re">立即注册</a>
+                        </div>
+                        <p>
+                            <input type="checkbox" name="contract" id="contract_input"/>
+                            <span>已阅读并同意<a href="javascript:void(0)">用户协议</a>和<a href="javascript:void(0)">隐私政策</a></span>
+                        </p>
+                        <div class="login_button">
+                            <a href="javascript:void(0)">登录</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="zhe">
+        <div class="zhe_content">
+            <p>友情提示</p>
+            <span>已阅读并同意<a href="javascript:void(0)">用户协议</a>和<a href="javascript:void(0)">隐私政策</a></span>
+            <div class="zhe_check_div">
+                <div class="no"><span>取消</span></div>
+                <div class="yes"><span>同意并继续</span></div>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        function phoneCheck(){
+            var errorSpan = document.getElementById("error_span")
+            var phones = document.getElementsByClassName("phone_input")
+            var phoneValue = phones[0].value
+            var regex = /^1[3-9]\d{9}$/;
+            var di = document.getElementById("di")
+            if(!regex.test(phoneValue)){
+                errorSpan.style.display="inline"
+                di.classList.add('get_code_add')
+                di.classList.remove('get_code')
+            }else{
+                errorSpan.style.display="none"
+                di.classList.remove('get_code_add')
+                di.classList.add('get_code')
+            }
+        }
+
+        $(function(){
+            $('#logoImg').click(function(){
+                window.location.href='index.html'
+            })
+
+            $('.code_login_span').click(function(){
+                $('.code_login_span').css({'color':'#000','border-bottom':'3px solid #69a373'});
+                $('.login_span').css({'color':'#939794','border-bottom':'0px solid #69a373'})
+                $('#pwd_p').css('display','none')
+                $('#code_p').css('display','inline-block')
+                $('.wang').hide()
+                $('.re').css('margin-left','290px')
+                $('.get_code').css('display','block')
+                $('.get_code_add').css('display','block')
+            })
+
+            $('.login_span').click(function(){
+                $('.code_login_span').css({'color':'#939794','border-bottom':'0px solid #69a373'});
+                $('.login_span').css({'color':'#000','border-bottom':'3px solid #69a373'})
+                $('#pwd_p').css('display','block')
+                $('#code_p').css('display','none')
+                $('.wang').show()
+                $('.re').css('margin-left','205px')
+                $('.get_code').css('display','none')
+                $('.get_code_add').css('display','none')
+            })
+
+            $('div.login_button').click(function(){
+
+                var phoneP = $('#phone_p input').val();
+                if(phoneP.trim()===''){
+                    $('#error_span').css('display','inline')
+                    $('#di').addClass('get_code_add')
+                    $('#di').removeClass('get_code')
+                    return;
+                }
+
+                var isChecked = $('#contract_input').is(':checked')
+                if(!isChecked){
+                    $('#zhe').css('display','block');
+                    return;
+                }
+
+                var pwdCss = $('.login_span').css('color')
+                var codeCss = $('.code_login_sapn').css('color')
+                var black = 'rgb(0, 0, 0)';
+                if(pwdCss===black){
+                    var passwordP = $('#pwd_p input').val()
+                    if(passwordP===''){
+                        alert('请输入密码！')
+                        return;
+                    }else{
+                        $.ajax({
+                            url:'http://localhost/UserController/loginP',
+                            method:'post',
+                            data:{contact:phoneP,password:passwordP},
+                            success:function(result){
+                                if(result.code===101){
+                                    sessionStorage.setItem('userId',result.data.id)
+                                    sessionStorage.setItem('token2',result.token)
+                                    window.location.href='index.html'
+                                }else{
+                                    alert(result.message)
+                                }
+                            },
+                            error:function(){
+                                alert('登录异常！')
+                            }
+                        })
+                    }
+                }else{
+                    var codeP = $('#code_p input').val()
+                    if(codeP===''){
+                        alert('请输入验证码')
+                        return;
+                    }else{
+                        $.ajax({
+                            url:'http://localhost/UserController/loginC',
+                            method:'post',
+                            data:{contact:phoneP,code:codeP},
+                            success:function(result){
+                                if(result.code===101){
+                                    sessionStorage.setItem('userId',result.data.id)
+                                    sessionStorage.setItem('token2',result.token)
+                                    window.location.href='index.html'
+                                }else if(result.code===102){
+                                    alert(result.message)
+                                }else{
+                                    alert(result.message)
+                                }
+                            },
+                            error:function(){
+                                alert('登录异常！')
+                            }
+                        })
+                    }
+                }
+                
+            })
+
+            $('.no').click(function(){
+                $('#zhe').css('display','none');
+            })
+
+            $('.yes').click(function(){
+                $('#zhe').css('display','none');
+                $('#contract_input').prop('checked',true)
+            })
+
+            //获取验证码开始
+            var countdown = 60;
+            $('#di').click(function(){
+                var mouse = $('#di').css('cursor')
+                var phoneVal = $('.phone_input').val();
+                if(mouse === 'pointer'){
+                    var regexPhone = /^1[3-9]\d{9}$/;
+                    var err = $('#error_span');
+                    var dianDiv = $('#di');
+                    if(!regexPhone.test(phoneVal)){
+                        err.css('display','inline')
+                        dianDiv.addClass('get_code_add')
+                        dianDiv.removeClass('get_code')
+                        return;
+                    }else{
+                        err.css('display','none')
+                        dianDiv.removeClass('get_code_add')
+                        dianDiv.addClass('get_code')
+                    }
+                }else{
+                    return;
+                }
+
+                $.ajax({
+                    url:'http://localhost/UserController/sendCode',
+                    method:'POST',
+                    data: {contact:phoneVal}
+                })
+
+                var timer = setInterval(function(){
+                    if(countdown===0){
+                        clearInterval(timer);
+                        $('#di').text('点击获取')
+                        $('#di').css('font-size','16px')
+                        $('#di').css('cursor','pointer')
+                        countdown = 60;
+                    }else{
+                        $('#di').text(countdown + '秒后重新获取')
+                        $('#di').css('font-size','16px')
+                        $('#di').css('cursor','not-allowed')
+                        countdown--;
+                    }
+                },1000);
+            })
+            //获取验证码结束
+
+
+        })
+    </script>
+</body>
+</html>

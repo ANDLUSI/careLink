@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace等于mapper接口类的全限定名,这样实现对应 -->
+<mapper namespace="com.csi.mapper.ActivityMapper">
+
+    <!-- 插入一条记录 -->
+    <insert id="save" parameterType="com.csi.domain.Activity">
+        INSERT INTO activity (
+        name,application_start,active_start,active_end,location,description,active_status
+        ) VALUES (
+        #{name},
+        #{applicationStart},
+        #{activeStart},
+        #{activeEnd},
+        #{location},
+        #{description},
+        #{activeStatus}
+        )
+    </insert>
+
+    <!-- 删除一条记录 -->
+    <delete id="remove" parameterType="Integer">
+        DELETE FROM activity WHERE id = #{id}
+    </delete>
+
+    <!-- 更新一条记录 -->
+    <update id="update" parameterType="com.csi.domain.Activity">
+        UPDATE activity
+        SET
+        name = #{name},
+        application_start = #{applicationStart},
+        active_start = #{activeStart},
+        active_end = #{activeEnd},
+        location = #{location},
+        description = #{description},
+        active_status = #{activeStatus}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 查询单条记录 -->
+    <select id="findById" parameterType="Integer" resultType="com.csi.domain.Activity">
+        SELECT
+        *
+        FROM  activity
+        WHERE id = #{id}
+    </select>
+
+<!--    &lt;!&ndash; 查看详情 &ndash;&gt;-->
+<!--    <resultMap id="listmap" type="com.csi.domain.Activity">-->
+<!--        <id column="id" property="id"></id>-->
+<!--        <result column="activity_name" property="name"></result>-->
+<!--        <result column="application_start" property="applicationStart"></result>-->
+<!--        <result column="active_start" property="activeStart"></result>-->
+<!--        <result column="active_end" property="activeEnd"></result>-->
+<!--        <result column="location" property="location"></result>-->
+<!--        <result column="description" property="description"></result>-->
+<!--        <result column="active_status" property="activeStatus"></result>-->
+
+<!--        <association property="volunteer" javaType="com.csi.domain.Volunteer">-->
+<!--            <id property="id" column="id"></id>-->
+<!--            <result property="status" column="application_status"></result>-->
+<!--            <result property="userId" column="user_id"></result>-->
+<!--            <result property="activityId" column="activity_id"></result>-->
+
+<!--        </association>-->
+<!--        <association property="user" javaType="com.csi.domain.User">-->
+<!--            <id property="id" column="id"></id>-->
+<!--            <result property="name" column="volunteer_name"></result>-->
+
+<!--        </association>-->
+<!--    </resultMap>-->
+
+
+    <select id="list" parameterType="map" resultType="com.csi.domain.Activity">
+        select * from activity
+        <where>
+            <if test="key != null and key != ''">
+                AND name LIKE CONCAT('%', #{key}, '%')
+            </if>
+            <if test="activeStatus !=null">
+                AND active_status = #{activeStatus}
+            </if>
+        </where>
+        ORDER BY id DESC
+    </select>
+
+</mapper>

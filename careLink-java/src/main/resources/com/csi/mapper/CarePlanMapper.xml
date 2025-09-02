@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace等于mapper接口类的全限定名,这样实现对应 -->
+<mapper namespace="com.csi.mapper.CarePlanMapper">
+    <resultMap id="CarePlanMap" type="com.csi.domain.CarePlan">
+        <id column="id" property="id"></id>
+        <result column="employee_id" property="employeeId"></result>
+        <result column="plan_date" property="planDate"></result>
+        <result column="plan_details" property="planDetail"></result>
+        <result column="status" property="status"></result>
+
+        <association property="resident" javaType="com.csi.domain.Resident">
+            <id column="resident_id" property="id" ></id>
+            <result column="name" property="name"></result>
+            <result column="healthy_status" property="healthyStatus"></result>
+        </association>
+    </resultMap>
+
+
+    <!-- 插入新的护理计划 -->
+    <insert id="save" parameterType="com.csi.domain.CarePlan">
+        INSERT INTO care_plan (
+        resident_id,
+        employee_id,
+        plan_date,
+        plan_details,
+        status
+        ) VALUES (
+        #{residentId},
+        #{employeeId},
+        #{planDate},
+        #{planDetail},
+        #{status}
+        )
+    </insert>
+
+    <!-- 删除护理计划 -->
+    <delete id="remove" parameterType="int">
+        DELETE FROM care_plan WHERE id = #{id}
+    </delete>
+
+    <!-- 更新护理计划 -->
+    <update id="update" parameterType="com.csi.domain.CarePlanDTO">
+        UPDATE care_plan
+        SET
+        resident_id = #{residentId},
+        employee_id = #{employeeId},
+        plan_date = #{planDate},
+        plan_details = #{planDetail},
+        status = #{status}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 查询单条护理计划 -->
+    <select id="findById" parameterType="int" resultType="com.csi.domain.CarePlan">
+        SELECT
+        *
+        FROM care_plan
+        WHERE id = #{id}
+    </select>
+
+    <!-- 模糊查询+组合条件查询+查询全部 -->
+    <select id="list" parameterType="map" resultMap="CarePlanMap">
+        SELECT
+        c.*, r.id AS r_id, r.name, r.healthy_status
+        FROM
+        resident r
+        INNER JOIN
+        care_plan c
+        ON
+        r.id = c.resident_id
+        <where>
+            <if test="key != null and key != ''">
+                AND c.plan_details LIKE CONCAT('%', #{key}, '%')
+                OR c.plan_details LIKE CONCAT('%', #{key}, '%')
+            </if>
+            <if test="oldStatus != null">
+                AND r.healthy_status = #{oldStatus}
+            </if>
+            <if test="planStatus != null">
+                AND c.status = #{planStatus}
+            </if>
+        </where>
+    </select>
+
+    <select id="oldList" resultType="com.csi.domain.Resident">
+        SELECT
+        *
+        FROM
+        resident
+        WHERE healthy_status = #{oldStatus}
+    </select>
+
+</mapper>

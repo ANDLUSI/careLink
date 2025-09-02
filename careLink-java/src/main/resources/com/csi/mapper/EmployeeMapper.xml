@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace等于mapper接口类的全限定名,这样实现对应 -->
+<mapper namespace="com.csi.mapper.EmployeeMapper">
+
+
+    <!-- 查询所有员工 -->
+    <select id="list" resultType="com.csi.domain.Employee">
+        SELECT * ,FLOOR(DATEDIFF(CURDATE(), born_date) / 365.25) AS age
+        FROM employee
+        <where>
+            <if test="name!=null">
+                name LIKE CONCAT('%', #{name}, '%')
+            </if>
+        </where>
+        ORDER BY hire_date DESC
+    </select>
+
+    <!-- 通过名字模糊查询员工 -->
+    <select id="findLikeName" resultType="com.csi.domain.Employee">
+        SELECT * FROM employee
+        WHERE name LIKE CONCAT('%', #{name}, '%')
+    </select>
+
+    <!-- 添加员工 -->
+    <insert id="add" parameterType="com.csi.domain.Employee" useGeneratedKeys="false" keyProperty="employeeId">
+        INSERT INTO employee
+        (employee_id, name, gender, born_date, phone, password, address, idCard,salary, role_id, hire_date, createBy )
+        VALUES
+        (#{employeeId}, #{name}, #{gender}, #{bornDate}, #{phone}, #{password}, #{address}, #{idCard},#{salary}, #{roleId}, #{hireDate}, #{createBy} )
+    </insert>
+
+    <!-- 根据员工编号删除员工 -->
+    <delete id="deleteById" parameterType="java.lang.String">
+        DELETE FROM employee WHERE employee_id = #{employeeId}
+    </delete>
+
+    <!-- 批量删除员工 -->
+    <delete id="batchDelete" parameterType="java.util.List">
+        DELETE FROM employee WHERE employee_id IN
+        <foreach item="item" collection="deleteList" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <!-- 修改员工信息 -->
+    <update id="modify" parameterType="com.csi.domain.Employee">
+        UPDATE employee
+        SET name = #{name},
+        gender = #{gender},
+        born_date = #{bornDate},
+        phone = #{phone},
+        role_id=#{roleId},
+        password = #{password},
+        address = #{address},
+        salary = #{salary},
+        updateBy = #{updateBy},
+        updated_at =#{updatedAt}
+        WHERE employee_id = #{employeeId}
+    </update>
+</mapper>

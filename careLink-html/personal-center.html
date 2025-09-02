@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html lang="en"> <!--<![endif]-->
+
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Name of your web site">
+	<meta name="author" content="Marketify">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<title>个人中心</title>
+
+	<!-- STYLES -->
+	<link href="./assets/css/personal/googleapis.css" rel="stylesheet">
+	<link href="./assets/css/personal/googleapis2.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="assets/css/personal/plugins.css" />
+	<link rel="stylesheet" type="text/css" href="assets/css/personal/style.css" />
+	<link rel="stylesheet" href="assets/css/personal/style2.css">
+	<script src="assets/js/jquery.min.js" type="text/javascript"></script>
+	<script src="assets/js/personal/person-center.js"></script>
+	<link rel="stylesheet" href="/assets/iconfont/add/iconfont.css">
+	<!--[if lt IE 9]> <script type="text/javascript" src="js/modernizr.custom.js"></script> <![endif]-->
+	<!-- /STYLES -->
+
+	<!-- 使用 JavaScript 来触发文件选择 -->
+   <script>
+	var userId =sessionStorage.getItem("userId")
+	if(userId==null){
+		alert("你还未登录！请先登录")
+		window.location.href = "login.html"
+	}
+	
+   </script>
+</head>
+    
+<body>
+
+	<!-- WRAPPER ALL -->
+	<div class="arlo_tm_wrapper_all">
+
+		<div id="arlo_tm_popup_blog">
+			<div class="container">
+				<div class="inner_popup scrollable"></div>
+			</div>
+			<span class="close"><a href="#"></a></span>
+		</div>
+
+		<!-- PRELOADER -->
+		<div class="arlo_tm_preloader">
+			<div class="spinner_wrap">
+				<div class="spinner"></div>
+			</div>
+		</div>
+		<!-- /PRELOADER -->
+
+		<!-- MOBILE MENU -->
+
+		<!-- /MOBILE MENU -->
+
+		<!-- CONTENT -->
+		<div class="arlo_tm_content">
+
+			<!-- LEFTPART -->
+			<div class="arlo_tm_leftpart_wrap">
+				<div class="leftpart_inner">
+					<div class="logo_wrap">
+						<a href="index.html"><img src="assets/img/logo.png" alt="" /></a>
+					</div>
+					<div class="menu_list_wrap">
+						<ul class="anchor_nav">
+
+							<li><a href="#about">个人信息</a></li>
+							<li><a href="#services">活动申请</a></li>
+							<li><a href="#portfolio">我的老人</a></li>
+							<li><a href="index.html" style="color: #FFA500;">退出</a></li>
+							
+ 
+						</ul>
+					</div>
+
+					<a class="arlo_tm_resize" href="#"><i class="xcon-angle-left"></i></a>
+				</div>
+			</div>
+			<!-- /LEFTPART -->
+
+			<!-- RIGHTPART -->
+			<div class="arlo_tm_rightpart">
+				<div class="rightpart_inner">
+					<div class="arlo_tm_section" id="home">
+						<div class="arlo_tm_hero_header_wrap">
+							<div class="arlo_tm_universal_box_wrap">
+								<div class="bg_wrap">
+									<div class="overlay_image hero jarallax" data-speed="0.1"></div>
+									<div class="overlay_color hero"></div>
+								</div>
+								<div class="content hero">
+									<div class="inner_content">
+										<div class="image_wrap">
+											<img src="assets/img/headPhoto.png" alt="" />
+										</div>
+									</div>
+								</div>
+								<div class="arlo_tm_arrow_wrap bounce anchor">
+									<a href="#about"><i class="xcon-angle-double-down"></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- ABOUT -->
+
+					<div class="arlo_tm_section relative" id="about">
+						<div class="arlo_tm_about_wrapper_all">
+
+							<div class="container">
+								<div class="arlo_tm_title_holder">
+									<h3>个人信息</h3>
+								</div>
+								<div class="arlo_tm_about_wrap">
+									<div class="author_wrap">
+
+										<div class="rightbox">
+
+											<div class="about_short_contact_wrap" id="userInfo">
+												<ul>
+
+													<li id="name">
+														<span>名字:<label></label></span>
+													</li>
+													<li id="password">
+														<span>密码:<label>*********</label></span>
+													</li>
+													<li id="gender">
+														<span>性别:<label></label></span>
+													</li>
+													<li id="phone">
+														<span>联系方式:<label></label></span>
+													</li>
+
+													<li>
+														老人:
+														<div id="myResident">
+
+
+														</div>
+
+													</li>
+
+												</ul>
+											</div>
+
+											<div class="modify-data">
+												<ul>
+													<li>
+														<a href="javascript:void(0);" id="modify-info">编辑资料</a>
+														<div class="mask" id="mask-modify-info"></div>
+														<div class="personal-data">
+															<img class="exit" src="./assets/img/cancel-test.png" alt="">
+															<form>
+																<ul>
+																	<li>
+
+																		<!-- 创建一个标签，用于触发文件选择 -->
+																		<label for="file-upload"
+																			class="custom-file-upload">
+																			<img id="headPhoto" src="./assets/img/headPhoto.png">
+																		</label>
+																		<!-- 隐藏原始的文件输入元素 -->
+																		<input id="file-upload" name="file"
+																			type="file" style="display: none;" />
+																	</li>
+																	<input type="hidden" name="headPhoto">
+																	<input type="hidden" name="id">
+																	<li>
+																		姓名&nbsp;&nbsp;<input type="text" name="name">
+
+																	</li>
+																	<li>
+																		性别&nbsp;&nbsp;<input type="radio" name="gender"
+																			value="1" />男
+																		<input type="radio" name="gender" value="0" />女
+																	</li>
+																	<li>
+																		电话&nbsp;&nbsp;<input type="tel"
+																			name="contact" />
+																	</li>
+																	<li>
+																		密码&nbsp;&nbsp;<input type="password"
+																			name="password" readonly />
+																	</li>
+																	<li>
+																		<button type="button"
+																			class="confirm">确认修改</button>
+																		<button type="button"
+																			class="modify-pass">修改密码</button>
+																		<div class="newPassword">
+																			<img class="exit"
+																				src="./assets/img/cancel-test.png"
+																				alt="">
+																			<label for="currentPassword">当前密码</label>
+																			<input type="password" id="currentPassword"
+																				name="currentPassword" required>
+
+																			<label for="newPassword">新密码</label>
+																			<input type="password" id="newPassword"
+																				name="newPassword" required>
+
+																			<label
+																				for="confirmNewPassword">确认新密码</label>
+																			<input type="password"
+																				id="confirmNewPassword"
+																				name="confirmNewPassword" required>
+
+																			<div id="error" class="error"></div>
+
+																			<button type="button"
+																				id="confirmPassword">确认修改</button>
+																		</div>
+
+																	</li>
+																</ul>
+															</form>
+
+														</div>
+
+
+
+													</li>
+													<li>
+														<a href="#portfolio" class="add-oldPeople">添加老人</a>
+
+
+													</li>
+
+												</ul>
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- /ABOUT -->
+
+
+
+						<!-- SERVICES -->
+						<div class="arlo_tm_section" id="services">
+							<div class="arlo_tm_services_wrap">
+								<div class="container myApply">
+									<div class="arlo_tm_title_holder">
+										<h3>我的申请</h3>
+									</div>
+									<div class="myApply">
+										<ul class="arlo_tm_portfolio_filter">
+
+											<li class="apply2">
+												<a href="#" class="already-passed" data-filter=".design">已通过</a>
+												<div id="already-passed">
+													<ul>
+														<li id="headline" style="margin-bottom: 20px;">
+													        
+															<p>活动</p>
+															<p style="margin-left: 195px;">申请时间</p>
+															<p>开始时间</p>
+															<p>结束时间</p>
+															<p>审核人</p>
+														</li>
+														
+														<li id="noPart" style="color: #ccc;text-align: center;font-size: 20px;">目前还未参与任何活动!</li>
+
+													</ul>
+													<div id="page" >
+														<button id="prePage">上一页</button>
+														<span>
+
+														</span>
+														<button id="nextPage">下一页</button>
+
+														<select id="pageSize">
+															<option value="4">请选择</option>
+															<option value="4">4</option>
+															<option value="8">8</option>													
+														</select>
+													</div>
+												</div>
+											</li>
+											<li class="apply1">
+												<a href="#" class="pending-review" data-filter="*">待审核</a>
+												
+												<div id="pending-review">
+					
+													<!-- <div class="container">
+														<div class="status">
+															您的申请 <strong>正在审核中...&nbsp;</strong> <br>请耐心等待。
+														</div>
+														<div class="details">
+															<p><strong>申请时间:</strong> 2023年10月5日 14:30</p>
+															<p><strong>活动名称:</strong> 秋季运动会</p>
+														</div>
+														<a href="/user-center" class="btn">取消申请</a>
+													</div>
+												 -->
+												</div>
+												<div id="noApplication" style="color: #ccc;text-align: center;font-size: 20px;">目前还未申请活动!</div>
+											</li>
+											<li class="apply2" >
+												<a href="#" class="rejected" data-filter=".photography">已驳回</a>
+											
+												<div id="rejected" style="display: none;">
+													<ul style="display: none;">
+														<li id="headline" style="margin-bottom: 20px;">
+															<p>活动</p>
+															<p style="margin-left: 175px;">申请时间</p>
+															<p>驳回理由</p>
+															<p style="margin-left: 140px;">审核人</p>
+
+														</li>
+														
+														<!-- <li>
+															<p>这是活动的标题题目</p>
+															<p>2004-10-10</p>
+															<p>这是驳回申请的理由xxxxxxxxxx</p>
+															<p>审核人</p>
+															<p>已驳回</p>
+														</li> -->
+					
+													</ul>
+													<div id="noRejection" style="color: #ccc; margin-left: 500px;  font-size: 20px;">没有被驳回的申请!</div>
+													
+												</div>
+											
+												
+
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- /SERVICES -->
+
+						<!-- PORTFOLIO -->
+						<div class="arlo_tm_section relative" id="portfolio">
+							<div class="arlo_tm_portfolio_wrapper_all">
+
+								<!-- PORTFOLIO FILTER -->
+								<div class="arlo_tm_second_portfolio">
+									<div class="container">
+										<div class="arlo_tm_portfolio_wrap">
+											<div class="arlo_tm_title_holder portfolio">
+												<h3>我的老人</h3>
+												<span>下面是有关老人的基本信息和每日健康状况</span>
+											</div>
+											<div class="switching-elderly">
+
+												<div class="select-wrapper">
+
+													<select id="elder-select">
+														<!-- <option value="elder1">老人A</option>
+														<option value="elder2">老人B</option> -->
+														<!-- 可以根据需要添加更多老人 -->
+													</select>
+													<button id="logout-button" class="disabled">注销</button>
+												</div>
+												<div id="data-display">
+													<!-- 这里将显示对应老人的数据 -->
+												</div>
+											</div>
+											<div class="mask" id="mask-SearchOldpeople"></div>
+
+											<div class="SearchOldpeople">
+												<img class="exit" src="./assets/img/cancel-test.png" alt="">
+												<form id="searchForm">
+
+													<input type="text" id="searchName" name="searchName"
+														placeholder="请输入姓名">
+													<input type="text" id="searchIdNumber" name="searchIdNumber"
+														placeholder="请输入身份证号" maxlength="18">
+
+													<button id="searchResident" type="button">搜索</button>
+													<button type="reset">重置</button>
+												</form>
+
+												<div id="searchResults" class="search-results"></div>
+											</div>
+											<div class="health-status">
+												<ul class="arlo_tm_portfolio_filter">
+													<li>
+														<a href="#" class="eyeryDay" data-filter="*">每日健康状况</a>
+														
+														<div class="eyeryDay-status">
+															<div class="showNoResident">
+																<div class="prompt-message">目前还未添加老人，快去添加吧！
+																	<br><button class="add-button">添加老人</button>
+																</div>
+															</div>
+															<ul>
+																<li id="bloodSugar"></li>
+																<li id="bloodPressure">
+																	
+																</li>
+																<li id="heartRate"></li>
+																<li id="temperature">4</li>
+															</ul>
+														
+														</div>
+													</li>
+													<!-- <li>
+														<a href="#" class="tody" data-filter=".design">今日健康报表</a>
+														
+											
+														<div class="tody-status" style="display: none;">
+															<div class="showNoResident">
+																<div class="prompt-message">目前还未添加老人，快去添加吧！
+																	<br><button class="add-button">添加老人</button>
+																</div>
+															</div>
+															
+														</div>
+														
+														
+													</li> -->
+													<li>
+														<a href="#" class="basic" data-filter=".photography">护理工信息</a>
+														
+														<div class="basic-info">
+															<div class="showNoResident">
+																<div class="prompt-message">目前还未添加老人，快去添加吧！
+																	<br><button class="add-button">添加老人</button>
+																</div>
+															</div>
+															<ul>
+																<li id="nurseName">
+																	<span>姓名: <label></label></span>
+																</li>
+																<li id="gender">
+																	<span>性别:<label></label></span>
+																</li>
+																<li id="age">
+																	<span>年龄:<label></label></span>
+																</li>
+																<li id="phone">
+																	<span>电话:<label></label></span>
+																</li>
+																<li id="experience">
+																	<span>工作经验:<br><label><textarea></textarea></label></span>
+																</li>
+																<li id="rank">
+																	<span>护理等级:
+																		<label>
+
+																		</label>
+																	</span>
+																</li>
+																<li id="certificate">
+
+																	<span>护理证书:
+																		<label class="certificate-frame">
+																				<img src="" alt="证书图片">
+																				
+																		</label>
+																	</span>
+																</li>
+
+
+															</ul>
+														
+														</div>
+													</li>
+													
+												</ul>
+
+											</div>
+
+											</ul>
+										</div>
+									</div>
+								</div>
+								<!-- /PORTFOLIO FILTER -->
+
+							</div>
+						</div>
+						<!-- /PORTFOLIO -->
+
+						<!-- TESTIMONIALS -->
+
+						<!-- /NEWS -->
+
+						<!-- CONTACT & FOOTER -->
+
+						<!-- /CONTACT & FOOTER -->
+
+					</div>
+
+				</div>
+				<!-- /RIGHTPART -->
+
+				<a class="arlo_tm_totop" href="#"></a>
+
+			</div>
+		</div>
+		<!-- / WRAPPER ALL -->
+
+		<!-- SCRIPTS -->
+
+		<!--[if lt IE 10]> <script type="text/javascript" src="js/ie8.js"></script> <![endif]-->
+		<script src="assets/js/personal/plugins.js"></script>
+		<script src="assets/js/personal/init.js"></script>
+
+		<!-- echarts -->
+		<script src="./assets/js/personal/echarts.min.js"></script>
+		<!-- <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.1.0/echarts.min.js"></script> -->
+</body>
+
+</html>

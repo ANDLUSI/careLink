@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace等于mapper接口类的全限定名,这样实现对应 -->
+<mapper namespace="com.csi.mapper.VolunteerMapper">
+
+    <!-- 插入一条记录 -->
+    <insert id="save" parameterType="com.csi.domain.Volunteer">
+        INSERT INTO volunteer_application (
+        user_id,apply_date,activity_id,status,employee_id,audit_date,reject_reason
+        ) VALUES (
+        #{userId},
+        #{applyDate},
+        #{activityId},
+        #{status},
+        #{employeeId},
+        #{auditDate},
+        #{rejectReason}
+        )
+    </insert>
+
+    <!-- 删除一条记录 -->
+    <delete id="remove" parameterType="Integer">
+        DELETE FROM volunteer_application WHERE id = #{id}
+    </delete>
+
+    <!-- 更新一条记录 -->
+    <update id="update" parameterType="com.csi.domain.Volunteer">
+        <!--更新只能修改状态        -->
+        UPDATE volunteer_application
+        SET
+        <!--        user_id = #{userId},-->
+        <!--        apply_date = #{applyDate},-->
+        <!--        activity_id = #{activityId},-->
+        status = #{status},
+        reject_reason= #{rejectReason}
+        <!--        employee_id = #{employeeId},-->
+        <!--        audit_date = #{auditDate}-->
+
+        WHERE id = #{id}
+    </update>
+
+    <!-- 查询单条记录 -->
+    <select id="findById" parameterType="Integer" resultType="com.csi.domain.Volunteer">
+
+        SELECT
+        *
+        FROM volunteer_application
+        WHERE id = #{id}
+    </select>
+
+
+    <!--    志愿者 本身申请的活动及活动相关信息()-->
+    <resultMap id="listmap" type="com.csi.domain.Volunteer">
+        <id column="id" property="id"></id>
+        <result column="apply_date" property="applyDate"></result>
+        <result column="activity_id" property="activityId"></result>
+        <result column="status" property="status"></result>
+        <result column="audit_date" property="auditDate"></result>
+        <result column="reject_reason" property="rejectReason"></result>
+        <!-- 假设 name 应该映射到志愿者的名字（从 user 表中获取） -->
+        <!-- 但由于我们使用了 LEFT JOIN，可能有些志愿者没有名字，所以这里需要小心处理 -->
+        <!-- 如果 name 不是必需的，可以删除这一行 -->
+
+        <result column="employeeName" property="employeeName"></result>
+        <!-- 如果需要映射额外的列，请在这里添加 -->
+        <!-- <result column="application_start" property="applicationStart"/> -->
+        <!-- <result column="location" property="location"/> -->
+        <!-- <result column="active_status" property="activeStatus"/> -->
+        <association property="activity" javaType="com.csi.domain.Activity">
+            <id property="id" column="id"></id>
+            <result column="activityName" property="name"/> <!-- 重命名以匹配活动名称 -->
+            <result column="application_start" property="applicationStart"/> <!-- 重命名以匹配活动名称 -->
+            <result column="active_start" property="activeStart"></result>
+            <result column="active_end" property="activeEnd"></result>
+            <result column="location" property="location"></result>
+            <result column="active_status" property="activeStatus"></result>
+
+        </association>
+
+    </resultMap>
+
+    <select id="list" resultMap="listmap">
+        <!--    志愿者 本身申请的活动及活动相关信息()-->
+
+        SELECT t1.id,t1.apply_date,t1.`status`,t1.employee_id,t1.audit_date,t1.reject_reason,
+        t2.name 'activityName',t2.application_start,t2.active_start,t2.active_end,t2.location,t2.active_status,t4. name
+        "employeeName"
+        from volunteer_application t1 JOIN activity t2
+        ON(t1.activity_id=t2.id)
+        JOIN employee t4
+        ON(t1.employee_id=t4.employee_id)
+        <where>
+            <if test=" userId != null">
+                t1.user_id=#{userId}
+            </if>
+            <if test="status != null">
+                and t1.status =#{status}
+            </if>
+        </where>
+    </select>
+
+
+    <!--    查的是用户参与的活动状态（未开始，进行中，已结束）以及审核人姓名-->
+    <resultMap id="activitylist" type="com.csi.domain.Volunteer">
+        <id column="id" property="id"></id>
+        <result column="status" property="status"></result>
+        <result column="employeeName" property="employeeName"></result>
+        <association property="activity" javaType="com.csi.domain.Activity">
+            <id property="id" column="activityId"></id>
+            <result column="activityName" property="name"/> <!-- 重命名以匹配活动名称 -->
+            <result column="application_start" property="applicationStart"/> <!-- 重命名以匹配活动名称 -->
+            <result column="active_start" property="activeStart"></result>
+            <result column="active_end" property="activeEnd"></result>
+            <result column="location" property="location"></result>
+            <result column="active_status" property="activeStatus"></result>
+        </association>
+    </resultMap>
+
+    <!--   查询用户信息-->
+    <select id="selectUser" resultType="com.csi.domain.User">
+        SELECT t2.id,t2.`name`
+        from volunteer_application t1
+        Left JOIN user t2
+        ON(t1.user_id=t2.id)
+        <where>
+            <if test=" activityId != null">
+                t1.activity_id=#{activityId}
+            </if>
+            <if test="status != null">
+                and t1.status =#{status}
+            </if>
+        </where>
+    </select>
+    <select id="activitylist" resultMap="activitylist">
+        SELECT t2.id 'activityId',t1.`status`,t1.id,
+        t2.name 'activityName',t2.application_start,t2.active_start,t2.active_end,t2.location,t2.active_status,t4. name
+        "employeeName"
+        from volunteer_application t1 JOIN activity t2
+        ON(t1.activity_id=t2.id)
+        JOIN employee t4
+        ON(t1.employee_id=t4.employee_id)
+        <where>
+            <if test=" activityId != null">
+                t1.activity_id=#{activityId}
+            </if>
+            <if test="status != null">
+                and t1.status =#{status}
+            </if>
+        </where>
+        LIMIT 1
+    </select>
+
+
+    <!-- 后台管理展示列表和详情列表 -->
+<!--    <resultMap id="userMap" type="com.csi.domain.User">-->
+<!--        <id column="user_id" property="id"/>-->
+<!--        <result column="userName" property="name"/>-->
+<!--    </resultMap>-->
+<!--    <resultMap id="FindMap" type="com.csi.domain.Volunteer">-->
+<!--        <id column="id" property="id"></id>-->
+<!--        <result column="user_id" property="userId"></result>-->
+<!--        <result column="apply_date" property="applyDate"></result>-->
+<!--        <result column="activity_id" property="activityId"></result>-->
+<!--        <result column="status" property="status"></result>-->
+<!--        <result column="employee_id" property="employeeId"></result>-->
+<!--        <result column="audit_date" property="auditDate"></result>-->
+<!--       -->
+<!--        <association property="employee" javaType="com.csi.domain.Employee">-->
+<!--            <result column="name" property="employeeName"/>-->
+
+<!--        </association>-->
+
+    <resultMap id="FindMap" type="com.csi.domain.Volunteer">
+        <id column="id" property="id"/>
+        <result column="apply_date" property="applyDate"/>
+        <result column="status" property="status"/>
+        <result column="employee_id" property="employeeId"/>
+        <result column="audit_date" property="auditDate"/>
+        <result column="reject_reason" property="rejectReason"/>
+        <result column="employeeName" property="employeeName"/>
+        <association property="activity" resultMap="activityMap"/>
+        <association property="user" javaType="com.csi.domain.User">
+            <id column="user_id" property="id"/>
+            <result column="userName" property="name"/>
+
+
+        </association>
+    </resultMap>
+
+<!--    <resultMap id="userMap" type="com.csi.domain.User">-->
+<!--        <id column="user_id" property="id"/>-->
+<!--        <result column="userName" property="name"/>-->
+<!--    </resultMap>-->
+
+    <resultMap id="activityMap" type="com.csi.domain.Activity">
+        <id column="activity_id" property="id"/>
+        <result column="activityName" property="name"/>
+        <result column="application_start" property="applicationStart"/>
+        <result column="active_start" property="activeStart"/>
+        <result column="active_end" property="activeEnd"/>
+        <result column="location" property="location"/>
+        <result column="active_status" property="activeStatus"/>
+    </resultMap>
+<!--    </resultMap>-->
+    <select id="showlist" resultMap="FindMap">
+        <!-- 申请人姓名，申请日期，活动名称，状态，审核人姓名，审核日期，驳回理由 -->
+        SELECT
+        t1.id,
+        t3.name AS userName,
+        t1.user_id,
+        t1.apply_date,
+        t1.`status`,
+        t1.employee_id,
+        t1.audit_date,
+        t1.reject_reason,
+        t2.name AS activityName,
+        t2.application_start,
+        t2.active_start,
+        t2.active_end,
+        t2.location,
+        t2.active_status,
+        t4.name AS employeeName
+        FROM
+        volunteer_application t1
+        JOIN
+        activity t2 ON t1.activity_id = t2.id
+        LEFT JOIN
+        `user` t3 ON t1.user_id = t3.id
+        JOIN
+        employee t4 ON t1.employee_id = t4.employee_id
+        <where>
+            1=1
+            <if test="key != null and key != ''">
+                AND (t1.user_id LIKE CONCAT('%', #{key}, '%')
+                OR t1.status LIKE CONCAT('%', #{key}, '%'))
+            </if>
+        </where>
+        ORDER BY t1.apply_date DESC
+    </select>
+
+</mapper>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace等于mapper接口类的全限定名,这样实现对应 -->
+<mapper namespace="com.csi.mapper.BillMapper">
+
+    <resultMap id="billFindMap" type="com.csi.domain.Bill">
+        <id property="id" column="id"/>
+        <result property="residentId" column="resident_id"/>
+        <result property="billDate" column="bill_date"/>
+        <result property="amount" column="amount"/>
+        <result property="status" column="status"/>
+        <result property="desc" column="desc"/>
+        <association property="resident" javaType="com.csi.domain.Resident">
+            <id property="id" column="id"/>
+            <result property="name" column="name"/>
+        </association>
+    </resultMap>
+
+    <!--创建新订单-->
+    <insert id="saveBill" parameterType="com.csi.domain.Bill">
+        INSERT INTO bill(resident_id,bill_date,amount,`status`,`desc`)
+        VALUE(#{residentId},#{billDate},#{amount},#{status},#{desc})
+    </insert>
+
+    <!--通过订单id删除订单-->
+    <delete id="deleteBillById">
+        DELETE FROM bill WHERE id=#{id}
+    </delete>
+
+    <!--通过订单id修改订单状态-->
+    <update id="modifyBill" parameterType="com.csi.domain.Bill">
+        UPDATE bill SET `status`=#{status} WHERE id=#{id}
+    </update>
+
+    <!--通过id查询订单-->
+    <select id="findBillById" resultMap="billFindMap">
+        SELECT b.*,r.name FROM bill b
+        LEFT JOIN resident r
+        ON b.resident_id=r.id
+        WHERE b.id=#{id}
+    </select>
+
+    <!--查询所有订单-->
+    <select id="findAllBill" resultMap="billFindMap">
+        SELECT b.*, r.id
+        FROM bill b
+        LEFT JOIN resident r
+        ON b.resident_id = r.id
+        <where>
+            <if test="key != null and key != ''">
+                <choose>
+                    <when test="key == '已支付'">
+                        AND b.status = 1
+                    </when>
+                    <when test="key == '未支付'">
+                        AND b.status = 0
+                    </when>
+                    <otherwise>
+                        AND r.name LIKE CONCAT('%', #{key}, '%')
+                    </otherwise>
+                </choose>
+            </if>
+        </where>
+        ORDER BY b.id DESC
+    </select>
+
+
+    <!--    查询护理工的护理等级-->
+    <select id="getPriceByEmpId" resultType="double">
+        SELECT t2.price
+        FROM nurse t1,charge_standard t2
+        WHERE t1.rank = t2.id
+        AND t1.employee_id=#{employeeId}
+    </select>
+
+
+
+    <select id="getPriceRoomNo" resultType="double">
+        SELECT
+        c.price
+        FROM
+        room r
+        JOIN
+        charge_standard c ON r.type_id = c.id
+        WHERE r.id = #{roomNo};
+    </select>
+
+    <select id="getPriceByFood" resultType="double">
+        select price
+        from charge_standard
+        where type='伙食'
+    </select>
+
+
+
+
+</mapper>

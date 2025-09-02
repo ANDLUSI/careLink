@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace等于mapper接口类的全限定名,这样实现对应 -->
+<mapper namespace="com.csi.mapper.ChartMapper">
+
+     <select id="getUserNum" resultType="int">
+         SELECT
+         COUNT(*)
+         FROM
+         user
+     </select>
+
+    <select id="nurseNum" resultType="integer">
+        SELECT
+        COUNT(*)
+        FROM
+        nurse
+    </select>
+
+    <select id="recordNum" resultType="integer">
+        SELECT
+        COUNT(*)
+        FROM
+        incident_record
+    </select>
+
+    <select id="residentNum" resultType="integer">
+        SELECT
+        COUNT(*)
+        FROM
+        resident
+    </select>
+
+    <select id="applyNum" resultType="integer">
+        SELECT
+        (SELECT COUNT(*) FROM volunteer_application WHERE status = 0) +
+        (SELECT COUNT(*) FROM check_out_application WHERE status = 0) AS total_count
+    </select>
+
+    <select id="ageState" resultType="date">
+        SELECT
+        born_date
+        FROM
+        resident
+    </select>
+
+    <select id="getIncidentCountForLast7Days">
+        SELECT
+        DATE(occurrence_time) AS date,
+        COUNT(*) AS count
+        FROM
+        incident_record
+        WHERE
+        occurrence_time >= DATE_SUB(#{currentDate}, INTERVAL 6 DAY)
+        GROUP BY
+        DATE(occurrence_time)
+        ORDER BY
+        DATE(occurrence_time);
+    </select>
+
+    <select id="getIncidentCountForLast15Days">
+        SELECT
+        DATE(occurrence_time) AS date,
+        COUNT(*) AS count
+        FROM
+        incident_record
+        WHERE
+        occurrence_time >= DATE_SUB(#{currentDate}, INTERVAL 15 DAY)
+        GROUP BY
+        DATE(occurrence_time)
+        ORDER BY
+        DATE(occurrence_time);
+    </select>
+
+</mapper>
